@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Requivo — AI Knowledge Infrastructure</title>
+<title>Requivo — AI platform for capturing and retrieving operational know-how</title>
 
 <link rel="icon" href="favicon.svg">
 
@@ -53,6 +53,7 @@ color:#9aa4b2;
 text-decoration:none;
 margin-left:28px;
 font-size:14px;
+transition:0.2s;
 }
 
 nav a:hover{
@@ -67,23 +68,39 @@ radial-gradient(circle at 20% 10%, #1d2331 0%, transparent 40%),
 radial-gradient(circle at 80% 20%, #1a2130 0%, transparent 40%);
 }
 
+.hero .eyebrow{
+font-size:16px;
+font-weight:500;
+color:#4f8cff;
+margin-bottom:18px;
+}
+
 .hero h1{
 font-size:60px;
 line-height:1.1;
-max-width:900px;
+max-width:980px;
 margin:auto;
-margin-bottom:30px;
+margin-bottom:24px;
 }
 
-.highlight{
-color:#4f8cff;
+.hero .subheadline{
+font-size:24px;
+line-height:1.4;
+color:#e7ebf0;
+max-width:860px;
+margin:0 auto 22px auto;
+font-weight:500;
 }
 
 .hero p{
 font-size:20px;
 color:#9aa4b2;
-max-width:720px;
+max-width:760px;
 margin:auto;
+}
+
+.highlight{
+color:#4f8cff;
 }
 
 .button{
@@ -109,7 +126,15 @@ padding:110px 0;
 .section h2{
 font-size:38px;
 text-align:center;
-margin-bottom:70px;
+margin-bottom:24px;
+}
+
+.section-intro{
+text-align:center;
+color:#9aa4b2;
+font-size:18px;
+max-width:820px;
+margin:0 auto 60px auto;
 }
 
 .grid{
@@ -134,12 +159,63 @@ font-size:20px;
 color:#9aa4b2;
 }
 
-.problem{
+.product{
 background:#0e1117;
+}
+
+.problem{
+background:#0a0c11;
 }
 
 .usecases{
 background:#0e1117;
+}
+
+.product-copy{
+max-width:900px;
+margin:0 auto;
+}
+
+.product-copy p{
+font-size:18px;
+color:#9aa4b2;
+margin-bottom:24px;
+text-align:center;
+}
+
+.product-points{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:28px;
+margin:42px 0;
+}
+
+.product-point{
+background:#131721;
+border:1px solid #202632;
+border-radius:14px;
+padding:32px;
+}
+
+.product-point h3{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.product-point p{
+margin:0;
+text-align:left;
+font-size:16px;
+}
+
+.product-result{
+margin-top:8px;
+font-size:18px;
+color:#e7ebf0;
+text-align:center;
+max-width:860px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .footer{
@@ -174,6 +250,34 @@ opacity:1;
 transform:translateY(0);
 }
 
+@media (max-width: 900px){
+
+.hero{
+padding:110px 0 90px 0;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero .subheadline{
+font-size:20px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section{
+padding:90px 0;
+}
+
+.section h2{
+font-size:32px;
+}
+
+}
+
 </style>
 
 </head>
@@ -189,8 +293,8 @@ transform:translateY(0);
 </div>
 
 <div>
-<a href="#">Product</a>
-<a href="#">Use Cases</a>
+<a href="#product">Product</a>
+<a href="#usecases">Use Cases</a>
 <a href="#contact">Contact</a>
 </div>
 
@@ -202,18 +306,67 @@ transform:translateY(0);
 
 <div class="container">
 
+<div class="eyebrow">Requivo</div>
+
 <h1>
-AI infrastructure for <span class="highlight">capturing organisational knowledge</span>
+AI platform for <span class="highlight">capturing and retrieving operational know-how</span>
 </h1>
 
+<div class="subheadline">
+Critical know-how disappears every day.
+</div>
+
 <p>
-Critical expertise disappears every day as knowledge remains buried across documents, systems and conversations.
-Requivo captures institutional knowledge and makes it instantly accessible through AI.
+Requivo captures operational expertise before it is lost and makes it instantly accessible through AI.
 </p>
 
 <a class="button" href="#contact">
 Contact
 </a>
+
+</div>
+
+</section>
+
+<section class="section product reveal" id="product">
+
+<div class="container">
+
+<h2>The product</h2>
+
+<div class="section-intro">
+Two core workflows. One operational knowledge layer.
+</div>
+
+<div class="product-copy">
+
+<p>
+Requivo helps organisations capture operational know-how, preserve expert knowledge, and make it accessible when and where it is needed.
+</p>
+
+<div class="product-points">
+
+<div class="product-point">
+<h3>Knowledge capture</h3>
+<p>
+Capture operational knowledge from documents, procedures, and expert input.
+</p>
+</div>
+
+<div class="product-point">
+<h3>Expert routing</h3>
+<p>
+Route questions to the right expertise when the answer is not yet documented.
+</p>
+</div>
+
+</div>
+
+<p class="product-result">
+The result is a reusable operational knowledge layer that reduces repeated questions, shortens ramp-up time, and protects critical expertise from being lost.
+</p>
+
+</div>
 
 </div>
 
@@ -254,42 +407,7 @@ When experienced employees retire or change roles, organisations lose valuable o
 
 </section>
 
-<section class="section reveal">
-
-<div class="container">
-
-<h2>The solution</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Knowledge capture</h3>
-<p>
-Automatically capture expertise from internal documents, procedures and enterprise systems.
-</p>
-</div>
-
-<div class="card">
-<h3>AI retrieval</h3>
-<p>
-Employees can ask questions in natural language and receive precise answers grounded in company knowledge.
-</p>
-</div>
-
-<div class="card">
-<h3>Enterprise ready</h3>
-<p>
-Designed for organisations operating complex technology stacks and strict compliance environments.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section usecases reveal">
+<section class="section usecases reveal" id="usecases">
 
 <div class="container">
 
@@ -330,7 +448,7 @@ Preserve institutional expertise before experienced employees leave the organisa
 
 <h2>Contact</h2>
 
-<p style="text-align:center;color:#9aa4b2;max-width:600px;margin:auto;margin-bottom:50px;">
+<p class="section-intro">
 We are currently building Requivo and exploring partnerships with early design partners.
 If you are interested in learning more, please reach out.
 </p>
