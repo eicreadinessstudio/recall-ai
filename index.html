@@ -7,25 +7,31 @@
   <title>Requivo — AI platform for capturing and retrieving operational know-how</title>
 
   <link rel="icon" href="favicon.svg" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
       --bg:#0a0c11;
-      --bg-2:#0e1117;
+      --bg-2:#0d1118;
       --panel:#121720;
       --panel-2:#131926;
       --line:#202632;
       --line-soft:rgba(255,255,255,0.06);
+      --line-faint:rgba(255,255,255,0.03);
       --text:#e7ebf0;
       --text-soft:#9aa4b2;
       --text-dim:#7d8694;
       --blue:#4f8cff;
+      --blue-2:#7ea9ff;
       --blue-hover:#3d73d8;
-      --shadow:0 10px 30px rgba(0,0,0,0.24);
+      --shadow:0 16px 40px rgba(0,0,0,0.26);
       --radius:16px;
-      --fig-line:rgba(166, 180, 201, 0.18);
-      --fig-line-strong:rgba(202, 214, 231, 0.42);
+
+      --fig-stroke:rgba(177, 191, 214, 0.20);
+      --fig-stroke-strong:rgba(220, 229, 243, 0.48);
+      --fig-glow:rgba(79,140,255,0.16);
+      --fig-node:rgba(220, 232, 252, 0.82);
+      --fig-node-soft:rgba(220, 232, 252, 0.22);
     }
 
     *{
@@ -45,6 +51,7 @@
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
 
     .container{
@@ -78,14 +85,26 @@
     }
 
     .hero{
-      padding:110px 0 90px 0;
+      position:relative;
+      padding:110px 0 92px 0;
       text-align:center;
       background:
-        radial-gradient(circle at 20% 10%, #1d2331 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, #1a2130 0%, transparent 40%);
+        radial-gradient(circle at 20% 10%, rgba(40,58,92,0.50) 0%, transparent 38%),
+        radial-gradient(circle at 80% 20%, rgba(29,46,82,0.42) 0%, transparent 38%);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.015), transparent 20%),
+        radial-gradient(circle at 50% 0%, rgba(79,140,255,0.08), transparent 28%);
+      pointer-events:none;
     }
 
     .hero h1{
+      position:relative;
       font-size:78px;
       line-height:1.02;
       max-width:1100px;
@@ -93,6 +112,7 @@
       margin-bottom:34px;
       font-weight:800;
       letter-spacing:-2.6px;
+      z-index:1;
     }
 
     .highlight{
@@ -100,20 +120,24 @@
     }
 
     .hero-sub{
+      position:relative;
       font-size:20px;
       line-height:1.4;
       color:var(--text);
       max-width:760px;
       margin:0 auto 18px auto;
       font-weight:600;
+      z-index:1;
     }
 
     .hero p{
+      position:relative;
       font-size:18px;
       color:var(--text-soft);
       max-width:860px;
       margin:auto;
       line-height:1.7;
+      z-index:1;
     }
 
     .button{
@@ -169,6 +193,13 @@
       padding:36px;
       box-shadow:var(--shadow);
       backdrop-filter:blur(6px);
+      transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(79,140,255,0.18);
+      box-shadow:0 18px 44px rgba(0,0,0,0.32);
     }
 
     .card h3{
@@ -323,12 +354,23 @@
       transform:translateY(0);
     }
 
-    /* Feature figures */
+    /* Requivo interaction panels */
     .feature-figures{
-      padding:36px 0 28px 0;
+      position:relative;
+      padding:28px 0 18px 0;
       background:
         radial-gradient(circle at 50% 0%, rgba(79,140,255,0.07), transparent 34%),
         linear-gradient(to bottom, rgba(255,255,255,0.01), rgba(255,255,255,0));
+    }
+
+    .feature-figures::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to right, transparent 0%, rgba(79,140,255,0.03) 50%, transparent 100%);
+      pointer-events:none;
+      opacity:.65;
     }
 
     .figures-grid{
@@ -341,7 +383,7 @@
 
     .figure-card{
       position:relative;
-      min-height:620px;
+      min-height:640px;
       padding:30px 40px 34px 40px;
       background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
       overflow:hidden;
@@ -358,7 +400,7 @@
       inset:-20% -10%;
       background:
         radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(79,140,255,0.12), transparent 18%),
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.03), transparent 36%);
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,0.03), transparent 40%);
       opacity:0;
       transition:opacity .35s ease;
       z-index:0;
@@ -380,8 +422,9 @@
     .figure-topline{
       position:relative;
       z-index:2;
-      font-size:13px;
-      color:#6e7888;
+      font-size:12px;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      color:#6f7888;
       letter-spacing:0.18em;
       text-transform:uppercase;
       margin-bottom:18px;
@@ -394,8 +437,9 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      perspective:1200px;
+      perspective:1400px;
       transform-style:preserve-3d;
+      margin-bottom:6px;
     }
 
     .tech-svg{
@@ -404,39 +448,69 @@
       height:auto;
       overflow:visible;
       transform:
-        rotateX(calc(var(--rx, 0deg) * 0.35))
-        rotateY(calc(var(--ry, 0deg) * 0.55))
-        translate3d(var(--tx, 0px), var(--ty, 0px), 0);
-      transition:transform .16s ease-out, filter .3s ease;
+        rotateX(calc(var(--rx, 0deg) * 0.45))
+        rotateY(calc(var(--ry, 0deg) * 0.65))
+        translate3d(var(--tx, 0px), var(--ty, 0px), 0)
+        scale(var(--scale, 1));
+      transition:transform .14s ease-out, filter .35s ease;
       filter:drop-shadow(0 12px 40px rgba(0,0,0,0.28));
     }
 
     .figure-card:hover .tech-svg{
       filter:
-        drop-shadow(0 14px 44px rgba(0,0,0,0.35))
-        drop-shadow(0 0 28px rgba(79,140,255,0.08));
+        drop-shadow(0 14px 44px rgba(0,0,0,0.38))
+        drop-shadow(0 0 30px rgba(79,140,255,0.08));
     }
 
     .tech-svg path,
     .tech-svg line,
-    .tech-svg ellipse{
+    .tech-svg polyline,
+    .tech-svg polygon,
+    .tech-svg ellipse,
+    .tech-svg circle,
+    .tech-svg rect{
       fill:none;
-      stroke:var(--fig-line);
+      stroke:var(--fig-stroke);
       stroke-width:1.1;
       stroke-linecap:round;
       stroke-linejoin:round;
       vector-effect:non-scaling-stroke;
-      transition:transform .28s ease, opacity .28s ease, stroke .28s ease;
+      transition:transform .28s ease, opacity .28s ease, stroke .28s ease, fill .28s ease, r .25s ease;
+      transform-box:fill-box;
+      transform-origin:center;
     }
 
     .figure-card:hover .tech-svg path,
     .figure-card:hover .tech-svg line,
-    .figure-card:hover .tech-svg ellipse{
-      stroke:var(--fig-line-strong);
+    .figure-card:hover .tech-svg polyline,
+    .figure-card:hover .tech-svg polygon,
+    .figure-card:hover .tech-svg ellipse,
+    .figure-card:hover .tech-svg circle,
+    .figure-card:hover .tech-svg rect{
+      stroke:var(--fig-stroke-strong);
     }
 
-    .grid-fade line{
-      opacity:.32;
+    .guide{
+      opacity:.28;
+    }
+
+    .node{
+      fill:var(--fig-node-soft);
+      stroke:rgba(226,236,252,0.32);
+    }
+
+    .node-core{
+      fill:var(--fig-node);
+      stroke:none;
+    }
+
+    .pulse{
+      fill:none;
+      stroke:rgba(126,169,255,0.22) !important;
+    }
+
+    .glow-line{
+      stroke:rgba(126,169,255,0.22) !important;
     }
 
     .figure-card h3{
@@ -460,39 +534,40 @@
       max-width:320px;
     }
 
-    /* Figure 1 */
-    .fig-stack .top-plate{
-      transform:translateY(var(--plate-lift, 0px));
-      transform-origin:50% 50%;
+    /* panel 1: knowledge mesh */
+    .mesh-plane-back{ transform:translateY(calc(var(--plane-shift, 0px) * -0.35)); opacity:.55; }
+    .mesh-plane-mid{ transform:translateY(calc(var(--plane-shift, 0px) * 0.15)); }
+    .mesh-plane-front{ transform:translateY(calc(var(--plane-shift, 0px) * 0.55)); }
+    .mesh-links{ transform:translateY(calc(var(--link-shift, 0px) * 0.75)); }
+    .mesh-nodes .mover{
+      transform:translate3d(calc(var(--mxp, 0px) * var(--dx, 1)), calc(var(--myp, 0px) * var(--dy, 1)), 0);
     }
 
-    .fig-stack .layer-1{ transform:translateY(calc(var(--stack-shift, 0px) * .25)); }
-    .fig-stack .layer-2{ transform:translateY(calc(var(--stack-shift, 0px) * .45)); }
-    .fig-stack .layer-3{ transform:translateY(calc(var(--stack-shift, 0px) * .7)); }
-    .fig-stack .layer-4{ transform:translateY(calc(var(--stack-shift, 0px) * .95)); }
+    /* panel 2: validation loop */
+    .loop-orbit{
+      transform:rotate(calc(var(--orbit-rot, 0deg)));
+      transform-origin:180px 160px;
+    }
+    .loop-orbit-2{
+      transform:rotate(calc(var(--orbit-rot, 0deg) * -0.65));
+      transform-origin:180px 160px;
+    }
+    .loop-gates .gate{
+      transform:translate3d(calc(var(--gate-shift, 0px) * var(--gx, 1)), calc(var(--gate-shift, 0px) * var(--gy, 1)), 0);
+    }
+    .validator-center{
+      transform:scale(calc(1 + var(--center-scale, 0)));
+    }
 
-    /* Figure 2 */
-    .fig-cubes .cube-back{ transform:translate3d(calc(var(--cube-x, 0px) * -.10), calc(var(--cube-y, 0px) * -.18), 0); }
-    .fig-cubes .cube-left{ transform:translate3d(calc(var(--cube-x, 0px) * -.35), calc(var(--cube-y, 0px) * .08), 0); }
-    .fig-cubes .cube-right{ transform:translate3d(calc(var(--cube-x, 0px) * .35), calc(var(--cube-y, 0px) * .02), 0); }
-    .fig-cubes .cube-front{ transform:translate3d(calc(var(--cube-x, 0px) * .18), calc(var(--cube-y, 0px) * .34), 0); }
-    .fig-cubes .plate-a{ transform:translateY(calc(var(--plate-drop, 0px) * .6)); }
-    .fig-cubes .plate-b{ transform:translateY(calc(var(--plate-drop, 0px) * .95)); }
-    .fig-cubes .plate-c{ transform:translateY(calc(var(--plate-drop, 0px) * .35)); }
-
-    /* Figure 3 */
-    .fig-speed .rail-1{ transform:translateX(calc(var(--fan-shift, 0px) * .10)); }
-    .fig-speed .rail-2{ transform:translateX(calc(var(--fan-shift, 0px) * .16)); }
-    .fig-speed .rail-3{ transform:translateX(calc(var(--fan-shift, 0px) * .22)); }
-    .fig-speed .rail-4{ transform:translateX(calc(var(--fan-shift, 0px) * .28)); }
-    .fig-speed .rail-5{ transform:translateX(calc(var(--fan-shift, 0px) * .34)); }
-    .fig-speed .rail-6{ transform:translateX(calc(var(--fan-shift, 0px) * .40)); }
-    .fig-speed .rail-7{ transform:translateX(calc(var(--fan-shift, 0px) * .46)); }
-    .fig-speed .rail-8{ transform:translateX(calc(var(--fan-shift, 0px) * .52)); }
-    .fig-speed .rail-9{ transform:translateX(calc(var(--fan-shift, 0px) * .58)); }
-
-    .fig-speed .trail path{
-      opacity:calc(.22 + var(--trail-opacity, 0));
+    /* panel 3: governed access */
+    .access-stack .panel{
+      transform:translate3d(calc(var(--panel-shift, 0px) * var(--px, 1)), calc(var(--panel-rise, 0px) * var(--py, 1)), 0);
+    }
+    .access-nodes .access-node{
+      transform:translate3d(calc(var(--node-drift, 0px) * var(--nx, 1)), calc(var(--node-drift-y, 0px) * var(--ny, 1)), 0);
+    }
+    .access-beam{
+      opacity:calc(.18 + var(--beam-opacity, 0));
     }
 
     @media (max-width: 1100px){
@@ -515,15 +590,11 @@
       }
 
       .figure-visual{
-        height:320px;
+        height:330px;
       }
 
       .tech-svg{
-        max-width:300px;
-      }
-
-      .feature-figures{
-        padding-top:24px;
+        max-width:312px;
       }
     }
 
@@ -562,6 +633,15 @@
       .stat:last-child{
         border-bottom:none;
       }
+
+      nav{
+        flex-direction:column;
+        gap:18px;
+      }
+
+      nav a{
+        margin:0 12px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -576,11 +656,10 @@
       }
 
       .tech-svg,
-      .tech-svg path,
-      .tech-svg line,
-      .tech-svg ellipse,
+      .tech-svg * ,
       .figure-card::before{
         transition:none !important;
+        animation:none !important;
       }
     }
   </style>
@@ -625,157 +704,196 @@
     <div class="container">
       <div class="figures-grid">
 
-        <article class="figure-card motion-figure" data-depth="18">
-          <div class="figure-topline">FIG 0.2</div>
+        <!-- PANEL 1 -->
+        <article class="figure-card motion-figure panel-mesh">
+          <div class="figure-topline">CSK LAYER</div>
 
           <div class="figure-visual">
-            <svg viewBox="0 0 420 320" class="tech-svg fig-stack" aria-hidden="true">
-              <g class="grid-fade">
-                <line x1="80" y1="72" x2="210" y2="8"></line>
-                <line x1="210" y1="8" x2="342" y2="72"></line>
-                <line x1="342" y1="72" x2="210" y2="136"></line>
-                <line x1="210" y1="136" x2="80" y2="72"></line>
+            <svg viewBox="0 0 420 320" class="tech-svg svg-mesh" aria-hidden="true">
+              <g class="guide">
+                <polygon class="mesh-plane-back" points="110,88 210,40 312,88 210,136"></polygon>
+                <polygon class="mesh-plane-mid" points="96,126 210,72 324,126 210,180"></polygon>
+                <polygon class="mesh-plane-front" points="82,168 210,108 338,168 210,228"></polygon>
+                <line x1="110" y1="88" x2="96" y2="126"></line>
+                <line x1="312" y1="88" x2="324" y2="126"></line>
+                <line x1="96" y1="126" x2="82" y2="168"></line>
+                <line x1="324" y1="126" x2="338" y2="168"></line>
               </g>
 
-              <g class="layer layer-4">
-                <path d="M95 205 L210 150 L325 205 L210 260 Z"></path>
-                <path d="M95 130 L95 205"></path>
-                <path d="M325 130 L325 205"></path>
-                <path d="M210 150 L210 260"></path>
+              <g class="mesh-links">
+                <line class="glow-line" x1="146" y1="98" x2="168" y2="134"></line>
+                <line class="glow-line" x1="210" y1="68" x2="210" y2="144"></line>
+                <line class="glow-line" x1="272" y1="98" x2="250" y2="134"></line>
+                <line x1="146" y1="98" x2="210" y2="68"></line>
+                <line x1="210" y1="68" x2="272" y2="98"></line>
+                <line x1="146" y1="98" x2="168" y2="134"></line>
+                <line x1="272" y1="98" x2="250" y2="134"></line>
+                <line x1="168" y1="134" x2="210" y2="144"></line>
+                <line x1="210" y1="144" x2="250" y2="134"></line>
+                <line x1="132" y1="178" x2="168" y2="134"></line>
+                <line x1="288" y1="178" x2="250" y2="134"></line>
+                <line x1="132" y1="178" x2="210" y2="200"></line>
+                <line x1="288" y1="178" x2="210" y2="200"></line>
+                <line x1="210" y1="144" x2="210" y2="200"></line>
               </g>
 
-              <g class="layer layer-3">
-                <path d="M95 175 L210 120 L325 175 L210 230 Z"></path>
-              </g>
-
-              <g class="layer layer-2">
-                <path d="M95 146 L210 91 L325 146 L210 201 Z"></path>
-              </g>
-
-              <g class="layer layer-1">
-                <path d="M95 117 L210 62 L325 117 L210 172 Z"></path>
-              </g>
-
-              <g class="top-plate">
-                <path d="M95 87 L210 32 L325 87 L210 142 Z"></path>
-                <path d="M95 87 L95 101"></path>
-                <path d="M325 87 L325 101"></path>
-
-                <ellipse cx="210" cy="84" rx="55" ry="24"></ellipse>
-                <line x1="160" y1="89" x2="260" y2="89"></line>
-                <line x1="168" y1="95" x2="252" y2="95"></line>
-                <line x1="176" y1="101" x2="244" y2="101"></line>
-                <line x1="184" y1="107" x2="236" y2="107"></line>
+              <g class="mesh-nodes">
+                <g class="mover" style="--dx:-1.1;--dy:-0.7;">
+                  <circle class="node" cx="146" cy="98" r="12"></circle>
+                  <circle class="node-core" cx="146" cy="98" r="2.4"></circle>
+                </g>
+                <g class="mover" style="--dx:0;--dy:-1.2;">
+                  <circle class="pulse" cx="210" cy="68" r="18"></circle>
+                  <circle class="node" cx="210" cy="68" r="13"></circle>
+                  <circle class="node-core" cx="210" cy="68" r="2.8"></circle>
+                </g>
+                <g class="mover" style="--dx:1.15;--dy:-0.75;">
+                  <circle class="node" cx="272" cy="98" r="12"></circle>
+                  <circle class="node-core" cx="272" cy="98" r="2.4"></circle>
+                </g>
+                <g class="mover" style="--dx:-0.85;--dy:0.2;">
+                  <circle class="node" cx="168" cy="134" r="10"></circle>
+                  <circle class="node-core" cx="168" cy="134" r="2.2"></circle>
+                </g>
+                <g class="mover" style="--dx:0;--dy:0.15;">
+                  <circle class="node" cx="210" cy="144" r="14"></circle>
+                  <circle class="node-core" cx="210" cy="144" r="2.8"></circle>
+                </g>
+                <g class="mover" style="--dx:0.85;--dy:0.18;">
+                  <circle class="node" cx="250" cy="134" r="10"></circle>
+                  <circle class="node-core" cx="250" cy="134" r="2.2"></circle>
+                </g>
+                <g class="mover" style="--dx:-1.15;--dy:0.85;">
+                  <circle class="node" cx="132" cy="178" r="11"></circle>
+                  <circle class="node-core" cx="132" cy="178" r="2.3"></circle>
+                </g>
+                <g class="mover" style="--dx:1.15;--dy:0.85;">
+                  <circle class="node" cx="288" cy="178" r="11"></circle>
+                  <circle class="node-core" cx="288" cy="178" r="2.3"></circle>
+                </g>
+                <g class="mover" style="--dx:0;--dy:1.25;">
+                  <circle class="pulse" cx="210" cy="200" r="22"></circle>
+                  <circle class="node" cx="210" cy="200" r="15"></circle>
+                  <circle class="node-core" cx="210" cy="200" r="3"></circle>
+                </g>
               </g>
             </svg>
           </div>
 
-          <h3>Built for resilience</h3>
+          <h3>Structured knowledge layer</h3>
           <p>
-            Requivo structures fragile operational know-how into reusable layers — preserving nuance, exceptions, and practical judgment.
+            Fragmented operational knowledge is turned into a governed spatial layer — linked, clustered, and held in reusable structure.
           </p>
         </article>
 
-        <article class="figure-card motion-figure" data-depth="22">
-          <div class="figure-topline">FIG 0.3</div>
+        <!-- PANEL 2 -->
+        <article class="figure-card motion-figure panel-loop">
+          <div class="figure-topline">VALIDATION LOOP</div>
 
           <div class="figure-visual">
-            <svg viewBox="0 0 420 320" class="tech-svg fig-cubes" aria-hidden="true">
-              <g class="cube cube-back">
-                <path d="M188 62 L248 34 L308 62 L248 90 Z"></path>
-                <path d="M188 62 L188 125"></path>
-                <path d="M308 62 L308 125"></path>
-                <path d="M188 125 L248 153 L308 125"></path>
-                <path d="M248 90 L248 153"></path>
-                <g class="micro-grid">
-                  <line x1="234" y1="46" x2="247" y2="40"></line>
-                  <line x1="239" y1="49" x2="252" y2="43"></line>
-                  <line x1="244" y1="52" x2="257" y2="46"></line>
+            <svg viewBox="0 0 420 320" class="tech-svg svg-loop" aria-hidden="true">
+              <g class="guide">
+                <ellipse cx="210" cy="160" rx="110" ry="62"></ellipse>
+                <ellipse cx="210" cy="160" rx="76" ry="42"></ellipse>
+              </g>
+
+              <g class="loop-orbit">
+                <g class="loop-gates">
+                  <rect class="gate" style="--gx:-1.1;--gy:-0.4;" x="118" y="134" width="34" height="22" rx="4"></rect>
+                  <rect class="gate" style="--gx:1.15;--gy:-0.15;" x="268" y="110" width="40" height="24" rx="4"></rect>
+                  <rect class="gate" style="--gx:1.05;--gy:0.55;" x="274" y="182" width="36" height="22" rx="4"></rect>
+                  <rect class="gate" style="--gx:-0.95;--gy:0.75;" x="124" y="198" width="32" height="20" rx="4"></rect>
                 </g>
+
+                <line x1="152" y1="145" x2="186" y2="154"></line>
+                <line x1="234" y1="150" x2="268" y2="122"></line>
+                <line x1="236" y1="172" x2="274" y2="192"></line>
+                <line x1="182" y1="178" x2="156" y2="208"></line>
+
+                <circle class="node" cx="152" cy="145" r="8"></circle>
+                <circle class="node" cx="270" cy="122" r="8"></circle>
+                <circle class="node" cx="274" cy="192" r="8"></circle>
+                <circle class="node" cx="156" cy="208" r="8"></circle>
+                <circle class="node-core" cx="152" cy="145" r="2.1"></circle>
+                <circle class="node-core" cx="270" cy="122" r="2.1"></circle>
+                <circle class="node-core" cx="274" cy="192" r="2.1"></circle>
+                <circle class="node-core" cx="156" cy="208" r="2.1"></circle>
               </g>
 
-              <g class="cube cube-left">
-                <path d="M112 120 L172 92 L232 120 L172 148 Z"></path>
-                <path d="M112 120 L112 188"></path>
-                <path d="M232 120 L232 188"></path>
-                <path d="M112 188 L172 216 L232 188"></path>
-                <path d="M172 148 L172 216"></path>
-                <g class="micro-grid">
-                  <line x1="157" y1="104" x2="170" y2="98"></line>
-                  <line x1="162" y1="107" x2="175" y2="101"></line>
-                  <line x1="167" y1="110" x2="180" y2="104"></line>
-                </g>
+              <g class="loop-orbit-2">
+                <polyline points="108,160 134,160 146,144"></polyline>
+                <polyline points="312,160 286,160 274,178"></polyline>
               </g>
 
-              <g class="cube cube-right">
-                <path d="M258 132 L318 104 L378 132 L318 160 Z"></path>
-                <path d="M258 132 L258 194"></path>
-                <path d="M378 132 L378 194"></path>
-                <path d="M258 194 L318 222 L378 194"></path>
-                <path d="M318 160 L318 222"></path>
-              </g>
-
-              <g class="cube cube-front">
-                <path d="M190 214 L250 186 L310 214 L250 242 Z"></path>
-                <path d="M190 214 L190 264"></path>
-                <path d="M310 214 L310 264"></path>
-                <path d="M190 264 L250 292 L310 264"></path>
-                <path d="M250 242 L250 292"></path>
-                <g class="micro-grid">
-                  <line x1="236" y1="198" x2="249" y2="192"></line>
-                  <line x1="241" y1="201" x2="254" y2="195"></line>
-                  <line x1="246" y1="204" x2="259" y2="198"></line>
-                </g>
-              </g>
-
-              <g class="plate plate-a">
-                <path d="M112 190 L172 162 L232 190 L172 218 Z"></path>
-              </g>
-
-              <g class="plate plate-b">
-                <path d="M258 174 L318 146 L378 174 L318 202 Z"></path>
-              </g>
-
-              <g class="plate plate-c">
-                <path d="M258 143 L318 115 L378 143 L318 171 Z"></path>
+              <g class="validator-center">
+                <circle class="pulse" cx="210" cy="160" r="38"></circle>
+                <circle class="pulse" cx="210" cy="160" r="54"></circle>
+                <circle class="node" cx="210" cy="160" r="26"></circle>
+                <circle class="node-core" cx="210" cy="160" r="4"></circle>
+                <path d="M194 160 L205 171 L228 148"></path>
               </g>
             </svg>
           </div>
 
-          <h3>Orchestrated by AI</h3>
+          <h3>Expert verification loop</h3>
           <p>
-            Capture, retrieval, routing, and expert feedback become one coordinated system — designed for human and AI collaboration.
+            Gaps, conflicts, and uncertain knowledge flow through validation — turning weak signals into verified operational truth.
           </p>
         </article>
 
-        <article class="figure-card motion-figure" data-depth="26">
-          <div class="figure-topline">FIG 0.4</div>
+        <!-- PANEL 3 -->
+        <article class="figure-card motion-figure panel-access">
+          <div class="figure-topline">GOVERNED ACCESS</div>
 
           <div class="figure-visual">
-            <svg viewBox="0 0 420 320" class="tech-svg fig-speed" aria-hidden="true">
-              <g class="fan">
-                <path class="rail rail-1" d="M120 230 L256 166 L256 182 L120 246 Z"></path>
-                <path class="rail rail-2" d="M130 222 L270 156 L270 172 L130 238 Z"></path>
-                <path class="rail rail-3" d="M140 214 L284 146 L284 162 L140 230 Z"></path>
-                <path class="rail rail-4" d="M150 206 L298 136 L298 152 L150 222 Z"></path>
-                <path class="rail rail-5" d="M160 198 L312 126 L312 142 L160 214 Z"></path>
-                <path class="rail rail-6" d="M170 190 L326 116 L326 132 L170 206 Z"></path>
-                <path class="rail rail-7" d="M180 182 L340 106 L340 122 L180 198 Z"></path>
-                <path class="rail rail-8" d="M190 174 L354 96 L354 112 L190 190 Z"></path>
-                <path class="rail rail-9" d="M200 166 L368 86 L368 102 L200 182 Z"></path>
+            <svg viewBox="0 0 420 320" class="tech-svg svg-access" aria-hidden="true">
+              <g class="guide">
+                <line x1="120" y1="244" x2="300" y2="160"></line>
+                <line x1="120" y1="258" x2="300" y2="174"></line>
               </g>
 
-              <g class="trail">
-                <path d="M360 120 L392 136 L392 183 L360 167 Z"></path>
-                <path d="M372 130 L402 145 L402 188 L372 173 Z"></path>
-                <path d="M384 140 L412 154 L412 194 L384 180 Z"></path>
+              <g class="access-beam">
+                <polygon points="150,228 224,194 224,205 150,239"></polygon>
+                <polygon points="186,212 272,172 272,183 186,223"></polygon>
+              </g>
+
+              <g class="access-stack">
+                <polygon class="panel" style="--px:-0.6;--py:0.6;" points="132,234 210,198 210,214 132,250"></polygon>
+                <polygon class="panel" style="--px:-0.25;--py:0.25;" points="162,220 244,182 244,198 162,236"></polygon>
+                <polygon class="panel" style="--px:0.1;--py:-0.05;" points="194,206 280,166 280,182 194,222"></polygon>
+                <polygon class="panel" style="--px:0.45;--py:-0.35;" points="230,190 320,148 320,164 230,206"></polygon>
+              </g>
+
+              <g class="access-nodes">
+                <line x1="104" y1="242" x2="132" y2="242"></line>
+                <line x1="100" y1="226" x2="162" y2="226"></line>
+                <line x1="96" y1="210" x2="194" y2="210"></line>
+                <line x1="92" y1="194" x2="230" y2="194"></line>
+
+                <g class="access-node" style="--nx:-1;--ny:0.3;">
+                  <circle class="node" cx="104" cy="242" r="7"></circle>
+                  <circle class="node-core" cx="104" cy="242" r="2"></circle>
+                </g>
+                <g class="access-node" style="--nx:-0.7;--ny:0.1;">
+                  <circle class="node" cx="100" cy="226" r="7"></circle>
+                  <circle class="node-core" cx="100" cy="226" r="2"></circle>
+                </g>
+                <g class="access-node" style="--nx:-0.35;--ny:-0.1;">
+                  <circle class="node" cx="96" cy="210" r="7"></circle>
+                  <circle class="node-core" cx="96" cy="210" r="2"></circle>
+                </g>
+                <g class="access-node" style="--nx:0;--ny:-0.2;">
+                  <circle class="pulse" cx="92" cy="194" r="13"></circle>
+                  <circle class="node" cx="92" cy="194" r="8"></circle>
+                  <circle class="node-core" cx="92" cy="194" r="2.2"></circle>
+                </g>
               </g>
             </svg>
           </div>
 
-          <h3>Designed for fast retrieval</h3>
+          <h3>Controlled operational access</h3>
           <p>
-            Reduce search friction, shorten dependency loops, and surface the right operational answer with speed and precision.
+            The governed layer becomes usable across workflows — writing, management, verification, and future AI-connected access.
           </p>
         </article>
 
@@ -947,18 +1065,21 @@
           entry.target.classList.add("visible");
         }
       });
-    },{
-      threshold:0.2
-    });
+    },{ threshold:0.2 });
 
     document.querySelectorAll('.reveal').forEach(el=>{
       observer.observe(el);
     });
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const figures = document.querySelectorAll('.motion-figure');
+
+    function clamp(val, min, max){
+      return Math.max(min, Math.min(max, val));
+    }
 
     if(!prefersReducedMotion){
-      document.querySelectorAll('.motion-figure').forEach(card=>{
+      figures.forEach(card=>{
         card.addEventListener('mousemove', (e)=>{
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;
@@ -968,7 +1089,7 @@
           const py = y / rect.height;
 
           const rx = (0.5 - py) * 10;
-          const ry = (px - 0.5) * 14;
+          const ry = (px - 0.5) * 16;
           const tx = (px - 0.5) * 10;
           const ty = (py - 0.5) * 8;
 
@@ -978,16 +1099,28 @@
           card.style.setProperty('--ry', `${ry}deg`);
           card.style.setProperty('--tx', `${tx}px`);
           card.style.setProperty('--ty', `${ty}px`);
+          card.style.setProperty('--scale', `${1 + Math.abs(px - 0.5) * 0.015}`);
 
-          card.style.setProperty('--plate-lift', `${-6 - py * 10}px`);
-          card.style.setProperty('--stack-shift', `${-3 - py * 8}px`);
+          if(card.classList.contains('panel-mesh')){
+            card.style.setProperty('--plane-shift', `${(py - 0.5) * 18}px`);
+            card.style.setProperty('--link-shift', `${(py - 0.5) * 10}px`);
+            card.style.setProperty('--mxp', `${(px - 0.5) * 10}px`);
+            card.style.setProperty('--myp', `${(py - 0.5) * 9}px`);
+          }
 
-          card.style.setProperty('--cube-x', `${(px - 0.5) * 18}px`);
-          card.style.setProperty('--cube-y', `${(py - 0.5) * 18}px`);
-          card.style.setProperty('--plate-drop', `${3 + py * 8}px`);
+          if(card.classList.contains('panel-loop')){
+            card.style.setProperty('--orbit-rot', `${(px - 0.5) * 22}deg`);
+            card.style.setProperty('--gate-shift', `${(py - 0.5) * 10}px`);
+            card.style.setProperty('--center-scale', `${Math.abs(px - 0.5) * 0.06 + 0.03}`);
+          }
 
-          card.style.setProperty('--fan-shift', `${6 + px * 16}px`);
-          card.style.setProperty('--trail-opacity', `${0.18 + px * 0.28}`);
+          if(card.classList.contains('panel-access')){
+            card.style.setProperty('--panel-shift', `${(px - 0.5) * 14}px`);
+            card.style.setProperty('--panel-rise', `${(0.5 - py) * 12}px`);
+            card.style.setProperty('--node-drift', `${(px - 0.5) * 12}px`);
+            card.style.setProperty('--node-drift-y', `${(py - 0.5) * 7}px`);
+            card.style.setProperty('--beam-opacity', `${clamp(Math.abs(px - 0.5) * 0.7, 0, 0.5)}`);
+          }
         });
 
         card.addEventListener('mouseleave', ()=>{
@@ -997,18 +1130,68 @@
           card.style.setProperty('--ry', `0deg`);
           card.style.setProperty('--tx', `0px`);
           card.style.setProperty('--ty', `0px`);
+          card.style.setProperty('--scale', `1`);
 
-          card.style.setProperty('--plate-lift', `0px`);
-          card.style.setProperty('--stack-shift', `0px`);
+          card.style.setProperty('--plane-shift', `0px`);
+          card.style.setProperty('--link-shift', `0px`);
+          card.style.setProperty('--mxp', `0px`);
+          card.style.setProperty('--myp', `0px`);
 
-          card.style.setProperty('--cube-x', `0px`);
-          card.style.setProperty('--cube-y', `0px`);
-          card.style.setProperty('--plate-drop', `0px`);
+          card.style.setProperty('--orbit-rot', `0deg`);
+          card.style.setProperty('--gate-shift', `0px`);
+          card.style.setProperty('--center-scale', `0`);
 
-          card.style.setProperty('--fan-shift', `0px`);
-          card.style.setProperty('--trail-opacity', `0`);
+          card.style.setProperty('--panel-shift', `0px`);
+          card.style.setProperty('--panel-rise', `0px`);
+          card.style.setProperty('--node-drift', `0px`);
+          card.style.setProperty('--node-drift-y', `0px`);
+          card.style.setProperty('--beam-opacity', `0`);
         });
       });
+
+      let t = 0;
+
+      function idleMotion(){
+        t += 0.012;
+
+        figures.forEach((card, index)=>{
+          if(card.matches(':hover')) return;
+
+          const phase = t + index * 1.7;
+          const s1 = Math.sin(phase);
+          const s2 = Math.cos(phase * 0.78);
+
+          card.style.setProperty('--rx', `${s2 * 1.2}deg`);
+          card.style.setProperty('--ry', `${s1 * 1.6}deg`);
+          card.style.setProperty('--tx', `${s1 * 1.5}px`);
+          card.style.setProperty('--ty', `${s2 * 1.4}px`);
+
+          if(card.classList.contains('panel-mesh')){
+            card.style.setProperty('--plane-shift', `${s1 * 4}px`);
+            card.style.setProperty('--link-shift', `${s2 * 2}px`);
+            card.style.setProperty('--mxp', `${s2 * 1.8}px`);
+            card.style.setProperty('--myp', `${s1 * 1.6}px`);
+          }
+
+          if(card.classList.contains('panel-loop')){
+            card.style.setProperty('--orbit-rot', `${s1 * 6}deg`);
+            card.style.setProperty('--gate-shift', `${s2 * 2.5}px`);
+            card.style.setProperty('--center-scale', `${0.02 + (Math.sin(phase * 1.4) + 1) * 0.012}`);
+          }
+
+          if(card.classList.contains('panel-access')){
+            card.style.setProperty('--panel-shift', `${s1 * 4}px`);
+            card.style.setProperty('--panel-rise', `${s2 * 3}px`);
+            card.style.setProperty('--node-drift', `${s2 * 2.8}px`);
+            card.style.setProperty('--node-drift-y', `${s1 * 1.6}px`);
+            card.style.setProperty('--beam-opacity', `${0.08 + (Math.sin(phase * 1.2) + 1) * 0.06}`);
+          }
+        });
+
+        requestAnimationFrame(idleMotion);
+      }
+
+      requestAnimationFrame(idleMotion);
     }
   </script>
 
