@@ -1,560 +1,1016 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Requivo — AI platform for capturing and retrieving operational know-how</title>
+  <title>Requivo — AI platform for capturing and retrieving operational know-how</title>
 
-<link rel="icon" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-<style>
+  <style>
+    :root{
+      --bg:#0a0c11;
+      --bg-2:#0e1117;
+      --panel:#121720;
+      --panel-2:#131926;
+      --line:#202632;
+      --line-soft:rgba(255,255,255,0.06);
+      --text:#e7ebf0;
+      --text-soft:#9aa4b2;
+      --text-dim:#7d8694;
+      --blue:#4f8cff;
+      --blue-hover:#3d73d8;
+      --shadow:0 10px 30px rgba(0,0,0,0.24);
+      --radius:16px;
+      --fig-line:rgba(166, 180, 201, 0.18);
+      --fig-line-strong:rgba(202, 214, 231, 0.42);
+    }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-body{
-  font-family:'Inter',sans-serif;
-  background:#0a0c11;
-  color:#e7ebf0;
-  line-height:1.6;
-}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
 
-.container{
-  max-width:1180px;
-  margin:auto;
-  padding:0 28px;
-}
+    .container{
+      max-width:1180px;
+      margin:auto;
+      padding:0 28px;
+    }
 
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:28px 0;
-}
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:28px 0;
+    }
 
-.logo img{
-  height:34px;
-  display:block;
-}
+    .logo img{
+      height:34px;
+      display:block;
+    }
 
-nav a{
-  color:#9aa4b2;
-  text-decoration:none;
-  margin-left:28px;
-  font-size:14px;
-  transition:0.2s;
-}
+    nav a{
+      color:var(--text-soft);
+      text-decoration:none;
+      margin-left:28px;
+      font-size:14px;
+      transition:color 0.2s ease, opacity 0.2s ease;
+    }
 
-nav a:hover{
-  color:#e7ebf0;
-}
+    nav a:hover{
+      color:var(--text);
+    }
 
-.hero{
-  padding:110px 0 110px 0;
-  text-align:center;
-  background:
-  radial-gradient(circle at 20% 10%, #1d2331 0%, transparent 40%),
-  radial-gradient(circle at 80% 20%, #1a2130 0%, transparent 40%);
-}
+    .hero{
+      padding:110px 0 90px 0;
+      text-align:center;
+      background:
+        radial-gradient(circle at 20% 10%, #1d2331 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, #1a2130 0%, transparent 40%);
+    }
 
-.hero h1{
-  font-size:78px;
-  line-height:1.02;
-  max-width:1100px;
-  margin:auto;
-  margin-bottom:34px;
-  font-weight:900;
-  letter-spacing:-2.6px;
-}
+    .hero h1{
+      font-size:78px;
+      line-height:1.02;
+      max-width:1100px;
+      margin:auto;
+      margin-bottom:34px;
+      font-weight:800;
+      letter-spacing:-2.6px;
+    }
 
-.highlight{
-  color:#4f8cff;
-}
+    .highlight{
+      color:var(--blue);
+    }
 
-.hero-sub{
-  font-size:20px;
-  line-height:1.4;
-  color:#e7ebf0;
-  max-width:760px;
-  margin:0 auto 18px auto;
-  font-weight:600;
-}
+    .hero-sub{
+      font-size:20px;
+      line-height:1.4;
+      color:var(--text);
+      max-width:760px;
+      margin:0 auto 18px auto;
+      font-weight:600;
+    }
 
-.hero p{
-  font-size:18px;
-  color:#9aa4b2;
-  max-width:860px;
-  margin:auto;
-  line-height:1.7;
-}
+    .hero p{
+      font-size:18px;
+      color:var(--text-soft);
+      max-width:860px;
+      margin:auto;
+      line-height:1.7;
+    }
 
-.button{
-  display:inline-block;
-  margin-top:40px;
-  padding:16px 32px;
-  background:#4f8cff;
-  color:white;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:500;
-  transition:0.2s;
-}
+    .button{
+      display:inline-block;
+      margin-top:40px;
+      padding:16px 32px;
+      background:var(--blue);
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+      font-weight:600;
+      transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow:0 8px 24px rgba(79,140,255,0.20);
+    }
 
-.button:hover{
-  background:#3d73d8;
-}
+    .button:hover{
+      background:var(--blue-hover);
+      transform:translateY(-1px);
+      box-shadow:0 12px 30px rgba(79,140,255,0.24);
+    }
 
-.section{
-  padding:110px 0;
-}
+    .section{
+      padding:110px 0;
+    }
 
-.section h2{
-  font-size:38px;
-  text-align:center;
-  margin-bottom:22px;
-  font-weight:800;
-  letter-spacing:-0.6px;
-}
+    .section h2{
+      font-size:38px;
+      text-align:center;
+      margin-bottom:22px;
+      font-weight:800;
+      letter-spacing:-0.6px;
+    }
 
-.section-intro{
-  text-align:center;
-  color:#9aa4b2;
-  font-size:18px;
-  max-width:860px;
-  margin:0 auto 60px auto;
-  line-height:1.7;
-}
+    .section-intro{
+      text-align:center;
+      color:var(--text-soft);
+      font-size:18px;
+      max-width:860px;
+      margin:0 auto 60px auto;
+      line-height:1.7;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:40px;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:40px;
+    }
 
-.card{
-  background:#131721;
-  border:1px solid #202632;
-  border-radius:14px;
-  padding:36px;
-}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:36px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
+    }
 
-.card h3{
-  margin-bottom:12px;
-  font-size:20px;
-  font-weight:800;
-}
+    .card h3{
+      margin-bottom:12px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
 
-.card p{
-  color:#9aa4b2;
-  font-size:16px;
-  line-height:1.7;
-}
+    .card p{
+      color:var(--text-soft);
+      font-size:16px;
+      line-height:1.7;
+    }
 
-.problem{
-  background:#0e1117;
-}
+    .problem{
+      background:var(--bg-2);
+    }
 
-.usecases{
-  background:#0e1117;
-}
+    .usecases{
+      background:var(--bg-2);
+    }
 
-.product{
-  background:#0a0c11;
-}
+    .product{
+      background:var(--bg);
+    }
 
-.stats{
-  border-top:1px solid #202632;
-  border-bottom:1px solid #202632;
-  background:#0e1117;
-}
+    .stats{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:var(--bg-2);
+    }
 
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-}
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:0;
+    }
 
-.stat{
-  padding:36px 32px;
-  border-right:1px solid #202632;
-}
+    .stat{
+      padding:36px 32px;
+      border-right:1px solid var(--line);
+    }
 
-.stat:last-child{
-  border-right:none;
-}
+    .stat:last-child{
+      border-right:none;
+    }
 
-.stat-number{
-  font-size:34px;
-  font-weight:800;
-  line-height:1;
-  margin-bottom:10px;
-  color:#e7ebf0;
-  letter-spacing:-1px;
-}
+    .stat-number{
+      font-size:34px;
+      font-weight:800;
+      line-height:1;
+      margin-bottom:10px;
+      color:var(--text);
+      letter-spacing:-1px;
+    }
 
-.stat-number span{
-  color:#4f8cff;
-}
+    .stat-number span{
+      color:var(--blue);
+    }
 
-.stat p{
-  color:#9aa4b2;
-  font-size:14px;
-  line-height:1.6;
-  max-width:240px;
-}
+    .stat p{
+      color:var(--text-soft);
+      font-size:14px;
+      line-height:1.6;
+      max-width:240px;
+    }
 
-.product-points{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:36px;
-  margin-top:10px;
-}
+    .product-points{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:36px;
+      margin-top:10px;
+    }
 
-.product-point{
-  background:#131721;
-  border:1px solid #202632;
-  border-radius:14px;
-  padding:36px;
-  text-align:left;
-}
+    .product-point{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:36px;
+      text-align:left;
+      box-shadow:var(--shadow);
+    }
 
-.product-label{
-  display:inline-block;
-  margin-bottom:18px;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:0.08em;
-  color:#4f8cff;
-  background:rgba(79,140,255,0.08);
-  border:1px solid rgba(79,140,255,0.18);
-  border-radius:6px;
-  padding:4px 10px;
-}
+    .product-label{
+      display:inline-block;
+      margin-bottom:18px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.08em;
+      color:var(--blue);
+      background:rgba(79,140,255,0.08);
+      border:1px solid rgba(79,140,255,0.18);
+      border-radius:8px;
+      padding:4px 10px;
+    }
 
-.product-point h3{
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:12px;
-}
+    .product-point h3{
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:12px;
+      letter-spacing:-0.03em;
+    }
 
-.product-point p{
-  color:#9aa4b2;
-  font-size:16px;
-  line-height:1.75;
-}
+    .product-point p{
+      color:var(--text-soft);
+      font-size:16px;
+      line-height:1.75;
+    }
 
-.sting{
-  margin-top:18px;
-  padding-top:14px;
-  border-top:1px solid #202632;
-  font-size:12px;
-  color:#8a97b0;
-  font-weight:500;
-}
+    .sting{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      font-size:12px;
+      color:#8a97b0;
+      font-weight:500;
+    }
 
-.contact-button-wrap{
-  text-align:center;
-  margin-top:40px;
-}
+    .contact-button-wrap{
+      text-align:center;
+      margin-top:40px;
+    }
 
-.footer{
-  border-top:1px solid #202632;
-  padding:42px 0;
-  text-align:center;
-  color:#7d8694;
-  font-size:14px;
-}
+    .footer{
+      border-top:1px solid var(--line);
+      padding:42px 0;
+      text-align:center;
+      color:var(--text-dim);
+      font-size:14px;
+    }
 
-.footer a{
-  color:#7d8694;
-  text-decoration:none;
-  margin:0 10px;
-  transition:0.2s;
-}
+    .footer a{
+      color:var(--text-dim);
+      text-decoration:none;
+      margin:0 10px;
+      transition:0.2s;
+    }
 
-.footer a:hover{
-  color:#4f8cff;
-}
+    .footer a:hover{
+      color:var(--blue);
+    }
 
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity 0.8s ease, transform 0.8s ease;
-}
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity 0.8s ease, transform 0.8s ease;
+    }
 
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
 
-@media (max-width: 1100px){
-  .hero h1{
-    font-size:62px;
-  }
-}
+    /* Feature figures */
+    .feature-figures{
+      padding:36px 0 28px 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(79,140,255,0.07), transparent 34%),
+        linear-gradient(to bottom, rgba(255,255,255,0.01), rgba(255,255,255,0));
+    }
 
-@media (max-width: 900px){
+    .figures-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:0;
+      border-top:1px solid var(--line-soft);
+      border-bottom:1px solid var(--line-soft);
+    }
 
-  .hero{
-    padding:90px 0 80px 0;
-  }
+    .figure-card{
+      position:relative;
+      min-height:620px;
+      padding:30px 40px 34px 40px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+      overflow:hidden;
+      isolation:isolate;
+    }
 
-  .hero h1{
-    font-size:48px;
-    line-height:0.98;
-    letter-spacing:-1.6px;
-  }
+    .figure-card + .figure-card{
+      border-left:1px solid var(--line-soft);
+    }
 
-  .hero p{
-    font-size:17px;
-  }
+    .figure-card::before{
+      content:"";
+      position:absolute;
+      inset:-20% -10%;
+      background:
+        radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(79,140,255,0.12), transparent 18%),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.03), transparent 36%);
+      opacity:0;
+      transition:opacity .35s ease;
+      z-index:0;
+      pointer-events:none;
+    }
 
-  .section{
-    padding:90px 0;
-  }
+    .figure-card:hover::before{
+      opacity:1;
+    }
 
-  .section h2{
-    font-size:32px;
-  }
+    .figure-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border:1px solid rgba(255,255,255,0.025);
+      pointer-events:none;
+    }
 
-  .stats-grid{
-    grid-template-columns:1fr;
-  }
+    .figure-topline{
+      position:relative;
+      z-index:2;
+      font-size:13px;
+      color:#6e7888;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
 
-  .stat{
-    border-right:none;
-    border-bottom:1px solid #202632;
-  }
+    .figure-visual{
+      position:relative;
+      z-index:2;
+      height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      perspective:1200px;
+      transform-style:preserve-3d;
+    }
 
-  .stat:last-child{
-    border-bottom:none;
-  }
-}
+    .tech-svg{
+      width:100%;
+      max-width:360px;
+      height:auto;
+      overflow:visible;
+      transform:
+        rotateX(calc(var(--rx, 0deg) * 0.35))
+        rotateY(calc(var(--ry, 0deg) * 0.55))
+        translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+      transition:transform .16s ease-out, filter .3s ease;
+      filter:drop-shadow(0 12px 40px rgba(0,0,0,0.28));
+    }
 
-</style>
+    .figure-card:hover .tech-svg{
+      filter:
+        drop-shadow(0 14px 44px rgba(0,0,0,0.35))
+        drop-shadow(0 0 28px rgba(79,140,255,0.08));
+    }
+
+    .tech-svg path,
+    .tech-svg line,
+    .tech-svg ellipse{
+      fill:none;
+      stroke:var(--fig-line);
+      stroke-width:1.1;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+      transition:transform .28s ease, opacity .28s ease, stroke .28s ease;
+    }
+
+    .figure-card:hover .tech-svg path,
+    .figure-card:hover .tech-svg line,
+    .figure-card:hover .tech-svg ellipse{
+      stroke:var(--fig-line-strong);
+    }
+
+    .grid-fade line{
+      opacity:.32;
+    }
+
+    .figure-card h3{
+      position:relative;
+      z-index:2;
+      font-size:18px;
+      line-height:1.2;
+      font-weight:700;
+      margin-top:6px;
+      margin-bottom:14px;
+      color:#edf2f7;
+      letter-spacing:-0.03em;
+    }
+
+    .figure-card p{
+      position:relative;
+      z-index:2;
+      font-size:15px;
+      line-height:1.75;
+      color:var(--text-soft);
+      max-width:320px;
+    }
+
+    /* Figure 1 */
+    .fig-stack .top-plate{
+      transform:translateY(var(--plate-lift, 0px));
+      transform-origin:50% 50%;
+    }
+
+    .fig-stack .layer-1{ transform:translateY(calc(var(--stack-shift, 0px) * .25)); }
+    .fig-stack .layer-2{ transform:translateY(calc(var(--stack-shift, 0px) * .45)); }
+    .fig-stack .layer-3{ transform:translateY(calc(var(--stack-shift, 0px) * .7)); }
+    .fig-stack .layer-4{ transform:translateY(calc(var(--stack-shift, 0px) * .95)); }
+
+    /* Figure 2 */
+    .fig-cubes .cube-back{ transform:translate3d(calc(var(--cube-x, 0px) * -.10), calc(var(--cube-y, 0px) * -.18), 0); }
+    .fig-cubes .cube-left{ transform:translate3d(calc(var(--cube-x, 0px) * -.35), calc(var(--cube-y, 0px) * .08), 0); }
+    .fig-cubes .cube-right{ transform:translate3d(calc(var(--cube-x, 0px) * .35), calc(var(--cube-y, 0px) * .02), 0); }
+    .fig-cubes .cube-front{ transform:translate3d(calc(var(--cube-x, 0px) * .18), calc(var(--cube-y, 0px) * .34), 0); }
+    .fig-cubes .plate-a{ transform:translateY(calc(var(--plate-drop, 0px) * .6)); }
+    .fig-cubes .plate-b{ transform:translateY(calc(var(--plate-drop, 0px) * .95)); }
+    .fig-cubes .plate-c{ transform:translateY(calc(var(--plate-drop, 0px) * .35)); }
+
+    /* Figure 3 */
+    .fig-speed .rail-1{ transform:translateX(calc(var(--fan-shift, 0px) * .10)); }
+    .fig-speed .rail-2{ transform:translateX(calc(var(--fan-shift, 0px) * .16)); }
+    .fig-speed .rail-3{ transform:translateX(calc(var(--fan-shift, 0px) * .22)); }
+    .fig-speed .rail-4{ transform:translateX(calc(var(--fan-shift, 0px) * .28)); }
+    .fig-speed .rail-5{ transform:translateX(calc(var(--fan-shift, 0px) * .34)); }
+    .fig-speed .rail-6{ transform:translateX(calc(var(--fan-shift, 0px) * .40)); }
+    .fig-speed .rail-7{ transform:translateX(calc(var(--fan-shift, 0px) * .46)); }
+    .fig-speed .rail-8{ transform:translateX(calc(var(--fan-shift, 0px) * .52)); }
+    .fig-speed .rail-9{ transform:translateX(calc(var(--fan-shift, 0px) * .58)); }
+
+    .fig-speed .trail path{
+      opacity:calc(.22 + var(--trail-opacity, 0));
+    }
+
+    @media (max-width: 1100px){
+      .hero h1{
+        font-size:62px;
+      }
+
+      .figures-grid{
+        grid-template-columns:1fr;
+      }
+
+      .figure-card + .figure-card{
+        border-left:none;
+        border-top:1px solid var(--line-soft);
+      }
+
+      .figure-card{
+        min-height:auto;
+        padding:26px 26px 30px 26px;
+      }
+
+      .figure-visual{
+        height:320px;
+      }
+
+      .tech-svg{
+        max-width:300px;
+      }
+
+      .feature-figures{
+        padding-top:24px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero{
+        padding:90px 0 80px 0;
+      }
+
+      .hero h1{
+        font-size:48px;
+        line-height:0.98;
+        letter-spacing:-1.6px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .section{
+        padding:90px 0;
+      }
+
+      .section h2{
+        font-size:32px;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .stat{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+
+      .stat:last-child{
+        border-bottom:none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{
+        scroll-behavior:auto;
+      }
+
+      .reveal{
+        opacity:1;
+        transform:none;
+        transition:none;
+      }
+
+      .tech-svg,
+      .tech-svg path,
+      .tech-svg line,
+      .tech-svg ellipse,
+      .figure-card::before{
+        transition:none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-  <nav>
-    <div class="logo">
-      <img src="logo.svg" alt="Requivo logo">
-    </div>
-
-    <div>
-      <a href="#problem">Problem</a>
-      <a href="#product">Product</a>
-      <a href="#usecases">Use Cases</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</div>
-
-<section class="hero">
   <div class="container">
+    <nav>
+      <div class="logo">
+        <img src="logo.svg" alt="Requivo logo" />
+      </div>
 
-    <h1>
-      AI platform for <span class="highlight">capturing and retrieving operational know-how</span>
-    </h1>
-
-    <div class="hero-sub">
-      Critical know-how disappears every day.
-    </div>
-
-    <p>
-      Requivo captures operational expertise before it is lost and makes it accessible when it is needed.
-    </p>
-
-    <a class="button" href="#contact">
-      Contact
-    </a>
-
+      <div>
+        <a href="#problem">Problem</a>
+        <a href="#product">Product</a>
+        <a href="#usecases">Use Cases</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </div>
-</section>
 
-<section class="stats reveal">
-  <div class="container">
-    <div class="stats-grid">
+  <section class="hero">
+    <div class="container">
+      <h1>
+        AI platform for <span class="highlight">capturing and retrieving operational know-how</span>
+      </h1>
 
-      <div class="stat">
-        <div class="stat-number">92<span>%</span></div>
-        <p>of organisations do not systematically capture expert knowledge before it leaves</p>
+      <div class="hero-sub">
+        Critical know-how disappears every day.
       </div>
 
-      <div class="stat">
-        <div class="stat-number">30<span>%</span></div>
-        <p>of the workweek is lost searching for internal knowledge that already exists somewhere</p>
+      <p>
+        Requivo captures operational expertise before it is lost and makes it accessible when it is needed.
+      </p>
+
+      <a class="button" href="#contact">Contact</a>
+    </div>
+  </section>
+
+  <section class="feature-figures reveal" id="motion-features">
+    <div class="container">
+      <div class="figures-grid">
+
+        <article class="figure-card motion-figure" data-depth="18">
+          <div class="figure-topline">FIG 0.2</div>
+
+          <div class="figure-visual">
+            <svg viewBox="0 0 420 320" class="tech-svg fig-stack" aria-hidden="true">
+              <g class="grid-fade">
+                <line x1="80" y1="72" x2="210" y2="8"></line>
+                <line x1="210" y1="8" x2="342" y2="72"></line>
+                <line x1="342" y1="72" x2="210" y2="136"></line>
+                <line x1="210" y1="136" x2="80" y2="72"></line>
+              </g>
+
+              <g class="layer layer-4">
+                <path d="M95 205 L210 150 L325 205 L210 260 Z"></path>
+                <path d="M95 130 L95 205"></path>
+                <path d="M325 130 L325 205"></path>
+                <path d="M210 150 L210 260"></path>
+              </g>
+
+              <g class="layer layer-3">
+                <path d="M95 175 L210 120 L325 175 L210 230 Z"></path>
+              </g>
+
+              <g class="layer layer-2">
+                <path d="M95 146 L210 91 L325 146 L210 201 Z"></path>
+              </g>
+
+              <g class="layer layer-1">
+                <path d="M95 117 L210 62 L325 117 L210 172 Z"></path>
+              </g>
+
+              <g class="top-plate">
+                <path d="M95 87 L210 32 L325 87 L210 142 Z"></path>
+                <path d="M95 87 L95 101"></path>
+                <path d="M325 87 L325 101"></path>
+
+                <ellipse cx="210" cy="84" rx="55" ry="24"></ellipse>
+                <line x1="160" y1="89" x2="260" y2="89"></line>
+                <line x1="168" y1="95" x2="252" y2="95"></line>
+                <line x1="176" y1="101" x2="244" y2="101"></line>
+                <line x1="184" y1="107" x2="236" y2="107"></line>
+              </g>
+            </svg>
+          </div>
+
+          <h3>Built for resilience</h3>
+          <p>
+            Requivo structures fragile operational know-how into reusable layers — preserving nuance, exceptions, and practical judgment.
+          </p>
+        </article>
+
+        <article class="figure-card motion-figure" data-depth="22">
+          <div class="figure-topline">FIG 0.3</div>
+
+          <div class="figure-visual">
+            <svg viewBox="0 0 420 320" class="tech-svg fig-cubes" aria-hidden="true">
+              <g class="cube cube-back">
+                <path d="M188 62 L248 34 L308 62 L248 90 Z"></path>
+                <path d="M188 62 L188 125"></path>
+                <path d="M308 62 L308 125"></path>
+                <path d="M188 125 L248 153 L308 125"></path>
+                <path d="M248 90 L248 153"></path>
+                <g class="micro-grid">
+                  <line x1="234" y1="46" x2="247" y2="40"></line>
+                  <line x1="239" y1="49" x2="252" y2="43"></line>
+                  <line x1="244" y1="52" x2="257" y2="46"></line>
+                </g>
+              </g>
+
+              <g class="cube cube-left">
+                <path d="M112 120 L172 92 L232 120 L172 148 Z"></path>
+                <path d="M112 120 L112 188"></path>
+                <path d="M232 120 L232 188"></path>
+                <path d="M112 188 L172 216 L232 188"></path>
+                <path d="M172 148 L172 216"></path>
+                <g class="micro-grid">
+                  <line x1="157" y1="104" x2="170" y2="98"></line>
+                  <line x1="162" y1="107" x2="175" y2="101"></line>
+                  <line x1="167" y1="110" x2="180" y2="104"></line>
+                </g>
+              </g>
+
+              <g class="cube cube-right">
+                <path d="M258 132 L318 104 L378 132 L318 160 Z"></path>
+                <path d="M258 132 L258 194"></path>
+                <path d="M378 132 L378 194"></path>
+                <path d="M258 194 L318 222 L378 194"></path>
+                <path d="M318 160 L318 222"></path>
+              </g>
+
+              <g class="cube cube-front">
+                <path d="M190 214 L250 186 L310 214 L250 242 Z"></path>
+                <path d="M190 214 L190 264"></path>
+                <path d="M310 214 L310 264"></path>
+                <path d="M190 264 L250 292 L310 264"></path>
+                <path d="M250 242 L250 292"></path>
+                <g class="micro-grid">
+                  <line x1="236" y1="198" x2="249" y2="192"></line>
+                  <line x1="241" y1="201" x2="254" y2="195"></line>
+                  <line x1="246" y1="204" x2="259" y2="198"></line>
+                </g>
+              </g>
+
+              <g class="plate plate-a">
+                <path d="M112 190 L172 162 L232 190 L172 218 Z"></path>
+              </g>
+
+              <g class="plate plate-b">
+                <path d="M258 174 L318 146 L378 174 L318 202 Z"></path>
+              </g>
+
+              <g class="plate plate-c">
+                <path d="M258 143 L318 115 L378 143 L318 171 Z"></path>
+              </g>
+            </svg>
+          </div>
+
+          <h3>Orchestrated by AI</h3>
+          <p>
+            Capture, retrieval, routing, and expert feedback become one coordinated system — designed for human and AI collaboration.
+          </p>
+        </article>
+
+        <article class="figure-card motion-figure" data-depth="26">
+          <div class="figure-topline">FIG 0.4</div>
+
+          <div class="figure-visual">
+            <svg viewBox="0 0 420 320" class="tech-svg fig-speed" aria-hidden="true">
+              <g class="fan">
+                <path class="rail rail-1" d="M120 230 L256 166 L256 182 L120 246 Z"></path>
+                <path class="rail rail-2" d="M130 222 L270 156 L270 172 L130 238 Z"></path>
+                <path class="rail rail-3" d="M140 214 L284 146 L284 162 L140 230 Z"></path>
+                <path class="rail rail-4" d="M150 206 L298 136 L298 152 L150 222 Z"></path>
+                <path class="rail rail-5" d="M160 198 L312 126 L312 142 L160 214 Z"></path>
+                <path class="rail rail-6" d="M170 190 L326 116 L326 132 L170 206 Z"></path>
+                <path class="rail rail-7" d="M180 182 L340 106 L340 122 L180 198 Z"></path>
+                <path class="rail rail-8" d="M190 174 L354 96 L354 112 L190 190 Z"></path>
+                <path class="rail rail-9" d="M200 166 L368 86 L368 102 L200 182 Z"></path>
+              </g>
+
+              <g class="trail">
+                <path d="M360 120 L392 136 L392 183 L360 167 Z"></path>
+                <path d="M372 130 L402 145 L402 188 L372 173 Z"></path>
+                <path d="M384 140 L412 154 L412 194 L384 180 Z"></path>
+              </g>
+            </svg>
+          </div>
+
+          <h3>Designed for fast retrieval</h3>
+          <p>
+            Reduce search friction, shorten dependency loops, and surface the right operational answer with speed and precision.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="stats reveal">
+    <div class="container">
+      <div class="stats-grid">
+
+        <div class="stat">
+          <div class="stat-number">92<span>%</span></div>
+          <p>of organisations do not systematically capture expert knowledge before it leaves</p>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">30<span>%</span></div>
+          <p>of the workweek is lost searching for internal knowledge that already exists somewhere</p>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">&lt;5<span>%</span></div>
+          <p>of a long-tenured expert’s know-how is typically preserved through a standard exit interview</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section problem reveal" id="problem">
+    <div class="container">
+
+      <h2>The problem</h2>
+
+      <div class="section-intro">
+        Most organisations treat documentation and knowledge as the same thing. They are not. Document management tools capture what people choose to write down. They do not capture the judgment, exceptions, and workarounds that experts carry in practice.
       </div>
 
-      <div class="stat">
-        <div class="stat-number">&lt;5<span>%</span></div>
-        <p>of a long-tenured expert’s know-how is typically preserved through a standard exit interview</p>
+      <div class="grid">
+
+        <div class="card">
+          <h3>Expertise that disappears</h3>
+          <p>When a long-tenured expert leaves, the organisation loses the judgment, workarounds, and edge-case decisions they built over years of practice. In most companies, that knowledge was never written down — and is rarely captured before it disappears.</p>
+          <p class="sting">Irreplaceable · Permanent · Unrecoverable</p>
+        </div>
+
+        <div class="card">
+          <h3>Knowledge that never transfers</h3>
+          <p>New team members inherit the manual, but not the judgment behind it. The gap between documented procedure and how work actually gets done is rarely captured — which forces every new hire to relearn it from scratch.</p>
+          <p class="sting">Lost productivity · Infinite restart</p>
+        </div>
+
+        <div class="card">
+          <h3>Answers that exist but can't be found</h3>
+          <p>In organisations, the answer to many operational questions already exists — in someone’s head, two floors away or two time zones apart. Without a way to route questions to the right expertise, that knowledge remains inaccessible.</p>
+          <p class="sting">Operational risk · Repeated cost</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section product reveal" id="product">
+    <div class="container">
+
+      <h2>Product</h2>
+
+      <div class="section-intro">
+        No hardware. No always-on recording. GDPR-compliant by design.
+      </div>
+
+      <div class="product-points">
+
+        <div class="product-point">
+          <div class="product-label">01 — Capture</div>
+          <h3>Knowledge Capture</h3>
+          <p>Requivo captures operational know-how from existing documents and expert input. It helps structure and preserve knowledge in a form that can be reused across the organisation.</p>
+        </div>
+
+        <div class="product-point">
+          <div class="product-label">02 — Route</div>
+          <h3>Expert Routing</h3>
+          <p>When a question arises, Requivo searches the existing knowledge layer first. If the answer is not yet documented, it helps route the question to the right expertise and turn the response into reusable organisational knowledge.</p>
+        </div>
+
       </div>
 
     </div>
+  </section>
+
+  <section class="section usecases reveal" id="usecases">
+    <div class="container">
+
+      <h2>Use cases</h2>
+
+      <div class="section-intro">
+        Any organisation where operational expertise is critical, distributed, and difficult to preserve.
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Operations &amp; Manufacturing</h3>
+          <p>Preserve plant procedures, engineering know-how, and maintenance expertise before critical experience gaps become operational risk.</p>
+        </div>
+
+        <div class="card">
+          <h3>Enterprise &amp; Professional Services</h3>
+          <p>Reduce time spent searching across fragmented systems and make internal expertise easier to access when it is needed.</p>
+        </div>
+
+        <div class="card">
+          <h3>Regulated Environments</h3>
+          <p>Source traceability and auditability make Requivo suitable for quality, compliance, and safety-critical environments.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="contact">
+    <div class="container">
+
+      <h2>Contact</h2>
+
+      <div class="section-intro">
+        We are currently building Requivo with a small group of early design partners. If operational knowledge capture is relevant to your organisation, we would be glad to hear from you.
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Agnieszka Pisz</h3>
+          <p>Co-Founder</p>
+        </div>
+
+        <div class="card">
+          <h3>Patrick Pirchheim</h3>
+          <p>Co-Founder</p>
+        </div>
+
+        <div class="card">
+          <h3>Jakub Weglarz</h3>
+          <p>COO</p>
+        </div>
+
+      </div>
+
+      <div class="contact-button-wrap">
+        <a class="button" href="mailto:contact@requivo.ai">
+          contact@requivo.ai
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="footer">
+    © 2026 Requivo |
+    <a href="impressum.html">Impressum</a> |
+    <a href="#contact">Contact</a>
   </div>
-</section>
 
-<section class="section problem reveal" id="problem">
-  <div class="container">
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    },{
+      threshold:0.2
+    });
 
-    <h2>The problem</h2>
+    document.querySelectorAll('.reveal').forEach(el=>{
+      observer.observe(el);
+    });
 
-    <div class="section-intro">
-      Most organisations treat documentation and knowledge as the same thing. They are not. Document management tools capture what people choose to write down. They do not capture the judgment, exceptions, and workarounds that experts carry in practice.
-    </div>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <div class="grid">
+    if(!prefersReducedMotion){
+      document.querySelectorAll('.motion-figure').forEach(card=>{
+        card.addEventListener('mousemove', (e)=>{
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
 
-      <div class="card">
-        <h3>Expertise that disappears</h3>
-        <p>When a long-tenured expert leaves, the organisation loses the judgment, workarounds, and edge-case decisions they built over years of practice. In most companies, that knowledge was never written down — and is rarely captured before it disappears.</p>
-        <p class="sting">Irreplaceable · Permanent · Unrecoverable</p>
-      </div>
+          const px = x / rect.width;
+          const py = y / rect.height;
 
-      <div class="card">
-        <h3>Knowledge that never transfers</h3>
-        <p>New team members inherit the manual, but not the judgment behind it. The gap between documented procedure and how work actually gets done is rarely captured — which forces every new hire to relearn it from scratch.</p>
-        <p class="sting">Lost productivity · Infinite restart</p>
-      </div>
+          const rx = (0.5 - py) * 10;
+          const ry = (px - 0.5) * 14;
+          const tx = (px - 0.5) * 10;
+          const ty = (py - 0.5) * 8;
 
-      <div class="card">
-        <h3>Answers that exist but can't be found</h3>
-        <p>In organisations, the answer to many operational questions already exists — in someone’s head, two floors away or two time zones apart. Without a way to route questions to the right expertise, that knowledge remains inaccessible.</p>
-        <p class="sting">Operational risk · Repeated cost</p>
-      </div>
+          card.style.setProperty('--mx', `${px * 100}%`);
+          card.style.setProperty('--my', `${py * 100}%`);
+          card.style.setProperty('--rx', `${rx}deg`);
+          card.style.setProperty('--ry', `${ry}deg`);
+          card.style.setProperty('--tx', `${tx}px`);
+          card.style.setProperty('--ty', `${ty}px`);
 
-    </div>
-  </div>
-</section>
+          card.style.setProperty('--plate-lift', `${-6 - py * 10}px`);
+          card.style.setProperty('--stack-shift', `${-3 - py * 8}px`);
 
-<section class="section product reveal" id="product">
-  <div class="container">
+          card.style.setProperty('--cube-x', `${(px - 0.5) * 18}px`);
+          card.style.setProperty('--cube-y', `${(py - 0.5) * 18}px`);
+          card.style.setProperty('--plate-drop', `${3 + py * 8}px`);
 
-    <h2>Product</h2>
+          card.style.setProperty('--fan-shift', `${6 + px * 16}px`);
+          card.style.setProperty('--trail-opacity', `${0.18 + px * 0.28}`);
+        });
 
-    <div class="section-intro">
-      No hardware. No always-on recording. GDPR-compliant by design.
-    </div>
+        card.addEventListener('mouseleave', ()=>{
+          card.style.setProperty('--mx', `50%`);
+          card.style.setProperty('--my', `50%`);
+          card.style.setProperty('--rx', `0deg`);
+          card.style.setProperty('--ry', `0deg`);
+          card.style.setProperty('--tx', `0px`);
+          card.style.setProperty('--ty', `0px`);
 
-    <div class="product-points">
+          card.style.setProperty('--plate-lift', `0px`);
+          card.style.setProperty('--stack-shift', `0px`);
 
-      <div class="product-point">
-        <div class="product-label">01 — Capture</div>
-        <h3>Knowledge Capture</h3>
-        <p>Requivo captures operational know-how from existing documents and expert input. It helps structure and preserve knowledge in a form that can be reused across the organisation.</p>
-      </div>
+          card.style.setProperty('--cube-x', `0px`);
+          card.style.setProperty('--cube-y', `0px`);
+          card.style.setProperty('--plate-drop', `0px`);
 
-      <div class="product-point">
-        <div class="product-label">02 — Route</div>
-        <h3>Expert Routing</h3>
-        <p>When a question arises, Requivo searches the existing knowledge layer first. If the answer is not yet documented, it helps route the question to the right expertise and turn the response into reusable organisational knowledge.</p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section class="section usecases reveal" id="usecases">
-  <div class="container">
-
-    <h2>Use cases</h2>
-
-    <div class="section-intro">
-      Any organisation where operational expertise is critical, distributed, and difficult to preserve.
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>Operations &amp; Manufacturing</h3>
-        <p>Preserve plant procedures, engineering know-how, and maintenance expertise before critical experience gaps become operational risk.</p>
-      </div>
-
-      <div class="card">
-        <h3>Enterprise &amp; Professional Services</h3>
-        <p>Reduce time spent searching across fragmented systems and make internal expertise easier to access when it is needed.</p>
-      </div>
-
-      <div class="card">
-        <h3>Regulated Environments</h3>
-        <p>Source traceability and auditability make Requivo suitable for quality, compliance, and safety-critical environments.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="contact">
-  <div class="container">
-
-    <h2>Contact</h2>
-
-    <div class="section-intro">
-      We are currently building Requivo with a small group of early design partners. If operational knowledge capture is relevant to your organisation, we would be glad to hear from you.
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>Agnieszka Pisz</h3>
-        <p>Co-Founder</p>
-      </div>
-
-      <div class="card">
-        <h3>Patrick Pirchheim</h3>
-        <p>Co-Founder</p>
-      </div>
-
-      <div class="card">
-        <h3>Jakub Weglarz</h3>
-        <p>COO</p>
-      </div>
-
-    </div>
-
-    <div class="contact-button-wrap">
-      <a class="button" href="mailto:contact@requivo.ai">
-        contact@requivo.ai
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<div class="footer">
-  © 2026 Requivo |
-  <a href="impressum.html">Impressum</a> |
-  <a href="#contact">Contact</a>
-</div>
-
-<script>
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
+          card.style.setProperty('--fan-shift', `0px`);
+          card.style.setProperty('--trail-opacity', `0`);
+        });
+      });
     }
-  });
-},{
-  threshold:0.2
-});
-
-document.querySelectorAll('.reveal').forEach(el=>{
-  observer.observe(el);
-});
-</script>
+  </script>
 
 </body>
 </html>
