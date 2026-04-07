@@ -129,8 +129,17 @@
     .footer a{color:var(--text-dim);text-decoration:none;margin:0 10px;transition:.2s}
     .footer a:hover{color:var(--blue)}
 
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* safe fallback: content visible by default */
+    .reveal{opacity:1;transform:none}
+    .js-enabled .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity .8s ease,transform .8s ease;
+    }
+    .js-enabled .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
 
     .feature-figures{
       position:relative;padding:34px 0 10px 0;
@@ -251,21 +260,18 @@
     .step-fill{fill:rgba(223,235,252,0.06);stroke:rgba(226,236,252,0.26)}
     .step-core{fill:rgba(237,244,255,0.18);stroke:rgba(232,239,250,0.38)}
 
-    /* graph 1 */
     .knowledge-plane{transform:translateY(calc(var(--kp-shift, 0px) * .55))}
     .knowledge-links{transform:translateY(calc(var(--kl-shift, 0px) * .7))}
     .knowledge-nodes .mover{
       transform:translate3d(calc(var(--mxp,0px) * var(--dx,1)), calc(var(--myp,0px) * var(--dy,1)), 0)
     }
 
-    /* graph 2 */
     .radial-ring{transform:rotate(calc(var(--orbit-rot,0deg)));transform-origin:180px 160px}
     .radial-gates .gate{
       transform:translate3d(calc(var(--gate-shift,0px) * var(--gx,1)), calc(var(--gate-shift,0px) * var(--gy,1)), 0)
     }
     .radial-center{transform:scale(calc(1 + var(--center-scale,0)))}
 
-    /* graph 3 */
     .wave-steps .step{
       transform:translateY(calc(var(--step-shift, 0px) * var(--sy, 1))) translateX(calc(var(--step-x, 0px) * var(--sx, 1)));
     }
@@ -299,7 +305,7 @@
 
     @media (prefers-reduced-motion: reduce){
       html{scroll-behavior:auto}
-      .reveal{opacity:1;transform:none;transition:none}
+      .reveal{opacity:1!important;transform:none!important;transition:none!important}
       .tech-svg,.tech-svg *,.figure-card::before{transition:none!important;animation:none!important}
     }
   </style>
@@ -334,7 +340,6 @@
     <div class="container">
       <div class="figures-grid">
 
-        <!-- 1 -->
         <article class="figure-card motion-figure panel-knowledge">
           <div class="figure-topline">GOVERNED OPERATIONAL KNOWLEDGE LAYER</div>
 
@@ -353,19 +358,16 @@
               </g>
 
               <g class="knowledge-links">
-                <!-- top layer -->
                 <line x1="144" y1="98" x2="210" y2="74"></line>
                 <line x1="210" y1="74" x2="276" y2="98"></line>
                 <line x1="144" y1="98" x2="176" y2="122"></line>
                 <line x1="276" y1="98" x2="244" y2="122"></line>
 
-                <!-- middle ring -->
                 <line x1="176" y1="122" x2="210" y2="110"></line>
                 <line x1="210" y1="110" x2="244" y2="122"></line>
                 <line x1="176" y1="122" x2="158" y2="146"></line>
                 <line x1="244" y1="122" x2="262" y2="146"></line>
 
-                <!-- core frame -->
                 <line class="accent-line" x1="210" y1="74" x2="210" y2="110"></line>
                 <line class="accent-line" x1="210" y1="110" x2="210" y2="150"></line>
                 <line class="accent-line" x1="210" y1="150" x2="210" y2="196"></line>
@@ -375,7 +377,6 @@
                 <line x1="210" y1="150" x2="232" y2="150"></line>
                 <line x1="232" y1="150" x2="262" y2="146"></line>
 
-                <!-- governance side links -->
                 <line x1="158" y1="146" x2="148" y2="182"></line>
                 <line x1="262" y1="146" x2="272" y2="182"></line>
                 <line x1="148" y1="182" x2="186" y2="196"></line>
@@ -383,7 +384,6 @@
                 <line x1="186" y1="196" x2="210" y2="196"></line>
                 <line x1="210" y1="196" x2="234" y2="196"></line>
 
-                <!-- lower structure -->
                 <line x1="210" y1="196" x2="210" y2="230"></line>
                 <line x1="186" y1="196" x2="170" y2="222"></line>
                 <line x1="234" y1="196" x2="250" y2="222"></line>
@@ -483,7 +483,6 @@
           </div>
         </article>
 
-        <!-- 2 -->
         <article class="figure-card motion-figure panel-radial">
           <div class="figure-topline">EXPERT VALIDATION LOOP</div>
 
@@ -535,7 +534,6 @@
           </div>
         </article>
 
-        <!-- 3 -->
         <article class="figure-card motion-figure panel-wave">
           <div class="figure-topline">APPLICATION MODULES</div>
 
@@ -546,13 +544,11 @@
                 <path d="M72 250 C118 238, 152 214, 188 200 C224 186, 256 168, 302 144"></path>
               </g>
 
-              <!-- base ridge / operational layer -->
               <g class="wave-ridge">
                 <path class="accent-line" d="M72 242 C114 228, 152 206, 188 192 C224 178, 262 156, 304 136"></path>
                 <path class="beam" d="M72 248 C114 234, 152 212, 188 198 C224 184, 262 162, 304 142 L304 154 C262 174, 224 196, 188 210 C152 224, 114 246, 72 260 Z"></path>
               </g>
 
-              <!-- staircase / modules -->
               <g class="wave-steps">
                 <g class="step" style="--sx:-.45;--sy:.35;">
                   <polygon class="step-fill" points="86,230 136,210 136,230 86,250"></polygon>
@@ -579,7 +575,6 @@
                 </g>
               </g>
 
-              <!-- flowing bars -->
               <g class="wave-bars">
                 <rect class="bar" style="--by:1.2;" x="92" y="196" width="8" height="18" rx="4"></rect>
                 <rect class="bar" style="--by:.8;" x="116" y="188" width="8" height="24" rx="4"></rect>
@@ -590,7 +585,6 @@
                 <rect class="bar" style="--by:-.55;" x="272" y="128" width="8" height="42" rx="4"></rect>
               </g>
 
-              <!-- module nodes -->
               <g class="wave-nodes">
                 <g class="module-node" style="--nx:-1;--ny:.5;">
                   <circle class="node" cx="108" cy="202" r="8"></circle>
@@ -706,6 +700,8 @@
   </div>
 
   <script>
+    document.documentElement.classList.add('js-enabled');
+
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -718,10 +714,6 @@
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const figures = document.querySelectorAll('.motion-figure');
-
-    function clamp(val, min, max){
-      return Math.max(min, Math.min(max, val));
-    }
 
     function resetCardVars(card){
       const defaults = {
@@ -824,7 +816,7 @@
 
           if(card.classList.contains('panel-knowledge')){
             card.style.setProperty('--kp-shift', `${s1 * 3}px`);
-            card.style.setProperty('--kl-shift', `${s2 * 2px}`);
+            card.style.setProperty('--kl-shift', `${s2 * 2}px`);
             card.style.setProperty('--mxp', `${s2 * 1.6}px`);
             card.style.setProperty('--myp', `${s1 * 1.5}px`);
           }
