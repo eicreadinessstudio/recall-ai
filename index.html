@@ -9,32 +9,23 @@
 
   <style>
     :root{
-      --bg:#071018;
-      --bg-2:#09131d;
-      --bg-3:#0c1724;
-      --panel:#0d1826;
-      --panel-2:#111e2d;
-      --line:rgba(173,194,223,0.14);
-      --line-soft:rgba(190,208,232,0.08);
-      --text:#edf3fb;
-      --text-soft:#a7b7cc;
-      --text-dim:#7f90a6;
-      --blue:#77a9ff;
-      --blue-2:#a7c7ff;
-      --blue-3:#2f63ff;
+      --bg:#ffffff;
+      --bg-soft:#f6f8fb;
+      --bg-panel:#fbfcfe;
+      --line:#dfe5ec;
+      --line-soft:#ebeff4;
+      --text:#111827;
+      --text-soft:#5f6f84;
+      --text-dim:#7d8aa0;
+      --blue:#2f63ff;
+      --blue-soft:#edf3ff;
+      --blue-line:#cddcff;
       --green:#1faa59;
-      --green-soft:rgba(31,170,89,0.12);
-      --green-line:rgba(31,170,89,0.28);
-      --shadow:0 24px 70px rgba(0,0,0,0.34);
-      --radius:18px;
-
-      --demo-bg:#f3f5f8;
-      --demo-panel:#ffffff;
-      --demo-line:#dfe4ea;
-      --demo-text:#111827;
-      --demo-text-soft:#667085;
-      --demo-blue:#2f63ff;
-      --demo-pill:#edf3ff;
+      --green-soft:#eefaf2;
+      --green-line:#b7e6c2;
+      --shadow:0 20px 50px rgba(17,24,39,0.08);
+      --radius:20px;
+      --max:1200px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -46,116 +37,116 @@
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
-      overflow-x:hidden;
     }
 
     .container{
-      max-width:1200px;
-      margin:auto;
-      padding:0 28px;
+      width:min(var(--max), calc(100% - 48px));
+      margin:0 auto;
     }
 
     nav{
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      padding:28px 0;
-      position:relative;
-      z-index:10;
+      justify-content:space-between;
+      padding:26px 0;
+      border-bottom:1px solid var(--line-soft);
+      background:rgba(255,255,255,0.94);
+      backdrop-filter:saturate(1.2) blur(10px);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+      gap:20px;
     }
 
     .logo{
       display:flex;
       align-items:center;
       gap:12px;
-      font-size:15px;
-      letter-spacing:.18em;
-      font-weight:800;
-      text-transform:uppercase;
-      color:var(--blue);
+      min-width:0;
     }
 
     .logo img{
-      height:34px;
+      height:30px;
       display:block;
     }
 
-    nav a{
+    .logo-word{
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.18em;
+      color:var(--blue);
+      text-transform:uppercase;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
       color:var(--text-soft);
       text-decoration:none;
-      margin-left:28px;
       font-size:14px;
+      font-weight:500;
       transition:color .2s ease;
     }
-    nav a:hover{color:var(--text)}
+
+    .nav-links a:hover{color:var(--text)}
 
     .hero{
-      position:relative;
-      padding:110px 0 78px 0;
-      background:
-        radial-gradient(circle at 18% 8%, rgba(48,84,146,0.28) 0%, transparent 34%),
-        radial-gradient(circle at 82% 12%, rgba(48,84,146,0.20) 0%, transparent 34%),
-        linear-gradient(to bottom, #07111a 0%, #09131e 100%);
-      overflow:hidden;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      opacity:.2;
-      background:
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size:40px 40px;
-      mask-image:linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.35));
+      padding:72px 0 44px 0;
+      background:linear-gradient(to bottom, #ffffff 0%, #fbfcfe 100%);
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:minmax(0, 1.05fr) minmax(380px, .95fr);
-      gap:56px;
-      align-items:center;
-    }
-
-    .hero-copy{
-      position:relative;
-      z-index:1;
+      grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);
+      gap:52px;
+      align-items:start;
     }
 
     .eyebrow{
-      color:var(--blue-2);
-      font-size:13px;
-      font-weight:700;
+      font-size:12px;
+      font-weight:800;
       letter-spacing:.18em;
       text-transform:uppercase;
+      color:var(--blue);
       margin-bottom:18px;
     }
 
     .hero h1{
-      font-size:72px;
-      line-height:.98;
+      font-size:64px;
+      line-height:0.98;
+      letter-spacing:-2.4px;
       font-weight:800;
-      letter-spacing:-2.6px;
-      max-width:820px;
-      margin-bottom:24px;
+      max-width:760px;
+      margin-bottom:22px;
     }
 
     .highlight{color:var(--blue)}
 
-    .hero p{
-      font-size:18px;
+    .hero-copy p{
       color:var(--text-soft);
-      max-width:700px;
+      font-size:18px;
       line-height:1.78;
+      max-width:720px;
     }
 
     .hero-actions{
       display:flex;
       gap:14px;
-      margin-top:30px;
       flex-wrap:wrap;
+      margin-top:30px;
     }
 
     .btn{
@@ -168,366 +159,379 @@
       text-decoration:none;
       font-size:14px;
       font-weight:700;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
     }
 
-    .btn:hover{transform:translateY(-1px)}
+    .btn:hover{
+      transform:translateY(-1px);
+    }
 
     .btn-primary{
-      background:var(--blue);
-      color:#08111c;
-      border:1px solid transparent;
+      background:var(--text);
+      color:#fff;
+      border:1px solid var(--text);
+      box-shadow:0 8px 22px rgba(17,24,39,0.08);
     }
 
-    .btn-primary:hover{background:var(--blue-2)}
+    .btn-primary:hover{
+      background:#1a2433;
+      border-color:#1a2433;
+    }
 
     .btn-secondary{
-      background:transparent;
+      background:#fff;
       color:var(--text);
       border:1px solid var(--line);
     }
 
     .btn-secondary:hover{
-      border-color:rgba(119,169,255,0.26);
-      color:#fff;
+      border-color:#c8d2de;
+      background:#fafbfd;
     }
 
-    .hero-side{
-      position:relative;
-      z-index:1;
+    .hero-note{
+      margin-top:18px;
+      font-size:13px;
+      color:var(--text-dim);
+      line-height:1.7;
+      max-width:620px;
     }
 
-    .mini-system{
+    .hero-panel{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      background:#fff;
       border-radius:22px;
-      padding:24px;
       box-shadow:var(--shadow);
-      backdrop-filter:blur(8px);
+      overflow:hidden;
     }
 
-    .mini-system-top{
+    .hero-panel-top{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom:20px;
+      padding:18px 20px;
+      border-bottom:1px solid var(--line-soft);
+      background:#fcfdff;
     }
 
-    .mini-kicker{
+    .hero-panel-brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .hero-panel-brand .mini{
       font-size:12px;
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:#8aa6d8;
-      font-weight:700;
+      color:var(--blue);
+      font-weight:800;
     }
 
-    .mini-badge{
+    .hero-panel-brand .title{
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:-.03em;
+      color:var(--text);
+    }
+
+    .hero-panel-status{
       font-size:12px;
-      padding:7px 10px;
+      font-weight:700;
+      padding:8px 10px;
       border-radius:999px;
-      color:#bcd3ff;
-      border:1px solid rgba(167,199,255,0.18);
-      background:rgba(167,199,255,0.06);
+      background:var(--blue-soft);
+      color:var(--blue);
+      white-space:nowrap;
     }
 
-    .mini-stack{
+    .hero-panel-body{
+      padding:18px 20px 20px 20px;
       display:grid;
       gap:12px;
     }
 
-    .mini-row{
+    .signal-row{
       display:grid;
-      grid-template-columns:94px 1fr auto;
+      grid-template-columns:88px minmax(0,1fr) auto;
+      gap:12px;
       align-items:center;
-      gap:14px;
-      padding:14px 14px;
       border:1px solid var(--line-soft);
       border-radius:14px;
-      background:rgba(255,255,255,0.018);
+      background:#fafbfd;
+      padding:12px;
     }
 
-    .mini-tag{
+    .signal-tag{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:76px;
       padding:8px 10px;
       border-radius:999px;
+      background:var(--blue-soft);
+      color:var(--blue);
       font-size:12px;
       font-weight:700;
-      color:#dce7fa;
-      background:rgba(167,199,255,0.08);
-      border:1px solid rgba(167,199,255,0.15);
     }
 
-    .mini-row strong{
+    .signal-row strong{
       font-size:14px;
-      font-weight:700;
-      color:#eef4fc;
       line-height:1.35;
+      font-weight:700;
+      color:var(--text);
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
 
-    .mini-state{
+    .signal-state{
+      color:var(--text-dim);
       font-size:12px;
-      color:#a6b6cb;
       white-space:nowrap;
     }
 
     .section{
-      padding:108px 0;
-      position:relative;
+      padding:100px 0;
+    }
+
+    .section-head{
+      margin-bottom:50px;
     }
 
     .section h2{
-      font-size:36px;
-      text-align:center;
-      margin-bottom:18px;
+      font-size:38px;
+      line-height:1.04;
+      letter-spacing:-1px;
       font-weight:800;
-      letter-spacing:-.9px;
+      margin-bottom:16px;
+      text-align:center;
     }
 
     .section-intro{
+      max-width:860px;
+      margin:0 auto;
       text-align:center;
       color:var(--text-soft);
       font-size:17px;
-      max-width:860px;
-      margin:0 auto 56px auto;
       line-height:1.82;
     }
 
-    .problem,.usecases{
-      background:var(--bg-2);
+    .problem{
+      background:var(--bg-soft);
+      border-top:1px solid var(--line-soft);
+      border-bottom:1px solid var(--line-soft);
     }
 
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:36px;
+      gap:26px;
     }
 
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+      background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
-      padding:34px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(8px);
-      transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+      border-radius:20px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(17,24,39,0.04);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
     .card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(119,169,255,0.22);
-      box-shadow:0 24px 54px rgba(0,0,0,0.34);
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(17,24,39,0.07);
+      border-color:#d3dbe5;
     }
 
     .card h3{
+      font-size:21px;
+      line-height:1.15;
+      letter-spacing:-.03em;
       margin-bottom:12px;
-      font-size:20px;
       font-weight:800;
-      letter-spacing:-.02em;
+      color:var(--text);
     }
 
     .card p{
       color:var(--text-soft);
       font-size:16px;
-      line-height:1.75;
+      line-height:1.8;
     }
 
     .sting{
       margin-top:18px;
       padding-top:14px;
-      border-top:1px solid var(--line);
+      border-top:1px solid var(--line-soft);
+      color:var(--text-dim);
       font-size:12px;
-      color:#8a97b0;
-      font-weight:600;
+      font-weight:700;
+      letter-spacing:.02em;
     }
 
-    .walkthrough{
-      background:
-        linear-gradient(to bottom, #08121c 0%, #0a1520 100%);
+    .demo-section{
+      background:#fff;
     }
 
-    .walkthrough-shell{
+    .demo-frame{
       border:1px solid var(--line);
       border-radius:24px;
       overflow:hidden;
-      box-shadow:0 28px 80px rgba(0,0,0,0.38);
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+      background:#fff;
+      box-shadow:var(--shadow);
     }
 
-    .walkthrough-topbar{
+    .demo-topbar{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:20px;
-      padding:20px 24px;
+      gap:16px;
+      padding:18px 22px;
       border-bottom:1px solid var(--line-soft);
-      background:rgba(255,255,255,0.015);
+      background:#fcfdff;
     }
 
-    .walkthrough-brand{
+    .demo-brand{
       display:flex;
       flex-direction:column;
-      gap:3px;
+      gap:4px;
     }
 
-    .walkthrough-brand .brand-mini{
+    .demo-brand .mini{
       color:var(--blue);
-      font-size:13px;
-      letter-spacing:.16em;
+      font-size:12px;
       font-weight:800;
+      letter-spacing:.16em;
       text-transform:uppercase;
     }
 
-    .walkthrough-brand .brand-title{
+    .demo-brand .title{
       font-size:18px;
       font-weight:800;
-      color:#f3f7fc;
       letter-spacing:-.03em;
+      color:var(--text);
     }
 
-    .walkthrough-scenario{
+    .demo-scenario{
       color:var(--text-soft);
       font-size:14px;
       text-align:right;
     }
 
-    .walkthrough-note{
-      padding:12px 24px;
+    .demo-note{
+      padding:12px 22px;
       text-align:center;
-      font-size:14px;
       color:var(--text-soft);
+      font-size:14px;
+      background:#f9fbfd;
       border-bottom:1px solid var(--line-soft);
-      background:rgba(255,255,255,0.018);
     }
 
-    .walkthrough-body{
-      background:var(--demo-bg);
-      color:var(--demo-text);
-      padding:0;
-    }
-
-    .walkthrough-progress{
+    .demo-progress{
       display:flex;
       align-items:center;
       gap:18px;
-      padding:18px 24px;
-      border-bottom:1px solid var(--demo-line);
-      background:#eef1f5;
-      color:#43506a;
+      padding:16px 22px;
+      border-bottom:1px solid var(--line-soft);
+      background:#f5f7fa;
+      color:#516076;
       font-size:14px;
       font-weight:500;
     }
 
-    .progress-dots{
+    .dots{
       display:flex;
-      gap:8px;
       align-items:center;
+      gap:8px;
     }
 
     .dot{
       width:10px;
       height:10px;
       border-radius:50%;
-      background:#cfd5dd;
+      background:#d2d8df;
     }
-    .dot.active{background:var(--demo-blue)}
     .dot.done{background:var(--green)}
+    .dot.active{background:var(--blue)}
 
-    .walkthrough-stage{
-      padding:0 28px 28px 28px;
+    .demo-canvas{
+      background:#eef2f6;
+      padding:32px 18px 28px 18px;
     }
 
-    .walkthrough-canvas{
-      background:#e9edf2;
-      min-height:720px;
-      position:relative;
-      overflow:hidden;
-      border-left:1px solid rgba(0,0,0,0.03);
-      border-right:1px solid rgba(0,0,0,0.03);
-    }
-
-    .walkthrough-pane{
-      width:min(1120px, calc(100% - 32px));
+    .demo-screen{
+      width:min(1080px, 100%);
       margin:0 auto;
-      padding:38px 0 34px 0;
-      display:grid;
-      grid-template-columns:minmax(0,1fr);
-    }
-
-    .walkthrough-screen{
-      background:var(--demo-bg);
+      background:#f6f8fb;
       border-radius:18px;
-      padding:34px 0 18px 0;
+      padding:30px 18px 20px 18px;
     }
 
-    .screen-content{
-      max-width:980px;
+    .screen-inner{
+      width:min(980px, 100%);
       margin:0 auto;
-      padding:0 18px;
     }
 
     .screen-step{
-      color:var(--demo-blue);
+      color:var(--blue);
       font-size:13px;
-      letter-spacing:.18em;
       font-weight:800;
+      letter-spacing:.18em;
       text-transform:uppercase;
       margin-bottom:10px;
     }
 
     .screen-title{
+      color:var(--text);
       font-size:30px;
-      line-height:1.12;
+      line-height:1.1;
       letter-spacing:-.05em;
       font-weight:800;
-      margin-bottom:12px;
-      color:var(--demo-text);
       max-width:680px;
+      margin-bottom:12px;
     }
 
     .screen-copy{
-      color:var(--demo-text-soft);
+      color:var(--text-soft);
       font-size:17px;
       line-height:1.72;
-      max-width:720px;
+      max-width:760px;
       margin-bottom:22px;
     }
 
     .source-card{
-      background:var(--demo-panel);
-      border:1px solid var(--demo-line);
+      background:#fff;
+      border:1px solid var(--line);
       border-radius:18px;
-      box-shadow:0 14px 28px rgba(17,24,39,0.06);
       overflow:hidden;
+      box-shadow:0 10px 24px rgba(17,24,39,0.05);
     }
 
     .source-card-top{
       display:flex;
-      justify-content:space-between;
       align-items:center;
+      justify-content:space-between;
       gap:16px;
       padding:12px 16px;
+      background:#f7f9fc;
+      border-bottom:1px solid var(--line-soft);
+      color:#667085;
       font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
+      letter-spacing:.13em;
       font-weight:800;
-      color:#6b7280;
-      background:#f5f7fa;
-      border-bottom:1px solid var(--demo-line);
+      text-transform:uppercase;
     }
 
     .source-status{
       font-size:12px;
       font-weight:700;
-      color:var(--demo-blue);
-      background:var(--demo-pill);
-      border-radius:999px;
-      padding:6px 10px;
-      letter-spacing:0;
       text-transform:none;
+      letter-spacing:0;
+      color:var(--blue);
+      background:var(--blue-soft);
+      padding:6px 10px;
+      border-radius:999px;
     }
 
     .source-list{
@@ -538,18 +542,18 @@
 
     .source-item{
       display:grid;
-      grid-template-columns:56px minmax(0,1fr) auto;
+      grid-template-columns:44px minmax(0,1fr) auto;
       gap:14px;
       align-items:center;
-      background:#f6f8fb;
-      border:1px solid #eef2f6;
-      border-radius:12px;
       padding:10px 12px;
+      border:1px solid #edf1f5;
+      border-radius:12px;
+      background:#fafbfd;
     }
 
     .source-badge{
-      width:32px;
-      height:32px;
+      width:30px;
+      height:30px;
       border-radius:8px;
       display:flex;
       align-items:center;
@@ -558,8 +562,8 @@
       font-size:11px;
       font-weight:800;
       letter-spacing:.03em;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.15);
     }
+
     .pdf{background:#ef4444}
     .ts{background:#2563eb}
     .ji{background:#1d4ed8}
@@ -568,24 +572,16 @@
 
     .source-main{
       min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:2px;
     }
 
     .source-main strong{
+      display:block;
       font-size:15px;
-      line-height:1.35;
-      color:var(--demo-text);
       font-weight:700;
+      color:var(--text);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-    }
-
-    .source-main span{
-      font-size:13px;
-      color:#7a8598;
     }
 
     .source-meta{
@@ -599,11 +595,12 @@
 
     .source-pill{
       padding:4px 8px;
-      background:var(--demo-pill);
-      color:var(--demo-blue);
       border-radius:999px;
+      background:var(--blue-soft);
+      color:var(--blue);
       font-size:12px;
       font-weight:700;
+      white-space:nowrap;
     }
 
     .source-date{
@@ -614,22 +611,22 @@
 
     .evidence-banner{
       margin-top:18px;
-      background:#eefaf2;
-      border:1px solid #b7e6c2;
-      border-radius:14px;
       padding:16px 18px;
-      color:#385445;
+      border-radius:14px;
+      border:1px solid var(--green-line);
+      background:var(--green-soft);
+      color:#3d5644;
       font-size:16px;
-      line-height:1.6;
+      line-height:1.65;
     }
 
-    .evidence-banner strong{color:#223427}
+    .evidence-banner strong{color:#26372b}
 
     .screen-footer{
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      gap:16px;
+      justify-content:space-between;
+      gap:14px;
       margin-top:22px;
     }
 
@@ -637,12 +634,12 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
+      text-decoration:none;
       color:#697586;
+      background:#fff;
       border:1px solid #d7dee7;
-      background:#ffffff;
       border-radius:999px;
       padding:10px 16px;
-      text-decoration:none;
       font-size:14px;
       font-weight:600;
     }
@@ -651,32 +648,32 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      color:#111827;
-      border:2px solid #111827;
-      background:#fff;
-      border-radius:999px;
-      padding:14px 20px;
       text-decoration:none;
+      color:#111827;
+      background:#fff;
+      border:2px solid #111827;
+      border-radius:999px;
+      padding:13px 20px;
       font-size:15px;
       font-weight:800;
     }
 
-    .deep-grid{
+    .demo-meta-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:22px;
-      margin-top:36px;
+      margin-top:28px;
     }
 
-    .deep-card{
+    .meta-card{
       border:1px solid var(--line);
       border-radius:18px;
-      padding:22px 22px 20px 22px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
+      padding:22px;
+      background:#fff;
     }
 
-    .deep-card .kicker{
-      color:#89a6d8;
+    .meta-card .mini{
+      color:var(--blue);
       font-size:11px;
       font-weight:800;
       letter-spacing:.18em;
@@ -684,40 +681,47 @@
       margin-bottom:8px;
     }
 
-    .deep-card h3{
+    .meta-card h3{
+      color:var(--text);
       font-size:18px;
       line-height:1.18;
       letter-spacing:-.04em;
-      margin-bottom:10px;
       font-weight:800;
-      color:#f2f7fc;
+      margin-bottom:10px;
     }
 
-    .deep-card p{
+    .meta-card p{
       color:var(--text-soft);
       font-size:15px;
       line-height:1.78;
+    }
+
+    .usecases{
+      background:var(--bg-soft);
+      border-top:1px solid var(--line-soft);
+      border-bottom:1px solid var(--line-soft);
     }
 
     .contact-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
       gap:22px;
-      margin-top:10px;
     }
 
     .contact-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+      background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
-      padding:28px;
-      min-height:148px;
+      border-radius:20px;
+      padding:26px;
+      min-height:140px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
+      box-shadow:0 10px 24px rgba(17,24,39,0.04);
     }
 
     .contact-card h3{
+      color:var(--text);
       font-size:20px;
       font-weight:800;
       letter-spacing:-.03em;
@@ -730,147 +734,186 @@
     }
 
     .footer{
-      border-top:1px solid var(--line);
-      padding:42px 0;
+      border-top:1px solid var(--line-soft);
+      padding:40px 0;
       text-align:center;
       color:var(--text-dim);
       font-size:14px;
+      background:#fff;
     }
 
     .footer a{
       color:var(--text-dim);
       text-decoration:none;
       margin:0 10px;
-      transition:.2s;
+      transition:color .2s ease;
     }
 
-    .footer a:hover{color:var(--blue)}
+    .footer a:hover{color:var(--text)}
 
     @media (max-width:1100px){
       .hero-grid{
         grid-template-columns:1fr;
         gap:34px;
       }
+
       .hero h1{
-        font-size:58px;
-        max-width:900px;
+        font-size:52px;
+        max-width:860px;
       }
-      .deep-grid,
+
+      .demo-meta-grid,
       .contact-grid{
         grid-template-columns:1fr;
-      }
-      .walkthrough-canvas{
-        min-height:auto;
       }
     }
 
     @media (max-width:820px){
+      .container{
+        width:min(var(--max), calc(100% - 32px));
+      }
+
       nav{
-        flex-direction:column;
-        gap:16px;
+        padding:20px 0;
       }
-      nav a{margin:0 12px}
-      .hero{
-        padding:88px 0 68px 0;
-      }
-      .hero h1{
-        font-size:44px;
-        line-height:1.02;
-        letter-spacing:-1.4px;
-      }
-      .hero p{
-        font-size:17px;
-      }
-      .section{
-        padding:88px 0;
-      }
-      .section h2{
-        font-size:30px;
-      }
-      .walkthrough-topbar,
-      .walkthrough-progress{
+
+      .nav-inner{
         flex-direction:column;
         align-items:flex-start;
       }
+
+      .nav-links{
+        gap:16px;
+        justify-content:flex-start;
+      }
+
+      .hero{
+        padding:56px 0 34px 0;
+      }
+
+      .hero h1{
+        font-size:40px;
+        line-height:1.02;
+        letter-spacing:-1.3px;
+      }
+
+      .hero-copy p{
+        font-size:17px;
+      }
+
+      .section{
+        padding:78px 0;
+      }
+
+      .section h2{
+        font-size:30px;
+      }
+
+      .demo-topbar,
+      .demo-progress{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
       .screen-title{
         font-size:26px;
       }
+
       .source-item{
         grid-template-columns:44px minmax(0,1fr);
       }
+
       .source-meta{
         grid-column:2;
         justify-content:flex-start;
         text-align:left;
       }
+
       .screen-footer{
         flex-direction:column;
         align-items:flex-start;
+      }
+
+      .signal-row{
+        grid-template-columns:1fr;
+      }
+
+      .signal-state{
+        white-space:normal;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav>
+  <nav>
+    <div class="container nav-inner">
       <div class="logo">
         <img src="logo.svg" alt="Requivo logo" />
       </div>
-      <div>
+
+      <div class="nav-links">
         <a href="#problem">Problem</a>
-        <a href="#walkthrough">Walkthrough</a>
-        <a href="#usecases">Use Cases</a>
+        <a href="#demo">Demo</a>
+        <a href="#usecases">Use cases</a>
         <a href="#contact">Contact</a>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Operational knowledge system</div>
+          <div class="eyebrow">Governed operational knowledge</div>
           <h1>
-            Governed operational knowledge <span class="highlight">from fragmented enterprise evidence</span>
+            Turn fragmented enterprise evidence into a <span class="highlight">governed operational knowledge layer</span>
           </h1>
           <p>
-            Requivo transforms documents, tickets, configs, workflow traces, and expert input into a governed operational knowledge layer — structured, validated, and reusable across operational workflows.
+            Requivo is a concept for transforming documents, tickets, configs, wiki content, and expert input into structured, traceable, and reusable operational knowledge — designed for environments where judgment, continuity, and verification matter.
           </p>
 
           <div class="hero-actions">
-            <a href="#walkthrough" class="btn btn-primary">See product walkthrough</a>
-            <a href="#contact" class="btn btn-secondary">Talk to the team</a>
+            <a href="https://demo.requivo.at/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View concept demo</a>
+            <a href="#contact" class="btn btn-secondary">Contact the team</a>
+          </div>
+
+          <div class="hero-note">
+            The interactive demo is hosted separately at <strong>demo.requivo.at</strong> and illustrates the intended product concept and workflow logic. It does not represent a finished product.
           </div>
         </div>
 
-        <div class="hero-side">
-          <div class="mini-system">
-            <div class="mini-system-top">
-              <div class="mini-kicker">Product logic</div>
-              <div class="mini-badge">Governed layer → modules</div>
+        <div class="hero-panel">
+          <div class="hero-panel-top">
+            <div class="hero-panel-brand">
+              <div class="mini">Concept demo</div>
+              <div class="title">Illustrative interface logic</div>
+            </div>
+            <div class="hero-panel-status">Demo only</div>
+          </div>
+
+          <div class="hero-panel-body">
+            <div class="signal-row">
+              <div class="signal-tag">Input</div>
+              <strong>Documents, tickets, configs, wiki pages, incident traces</strong>
+              <div class="signal-state">Connected</div>
             </div>
 
-            <div class="mini-stack">
-              <div class="mini-row">
-                <div class="mini-tag">Input</div>
-                <strong>Documents, configs, tickets, wiki pages, expert evidence</strong>
-                <div class="mini-state">Fragmented</div>
-              </div>
-              <div class="mini-row">
-                <div class="mini-tag">Core</div>
-                <strong>Ingestion, typing, linking, clustering, validation workflows</strong>
-                <div class="mini-state">Structured</div>
-              </div>
-              <div class="mini-row">
-                <div class="mini-tag">Layer</div>
-                <strong>Governed operational knowledge layer with traceable relations</strong>
-                <div class="mini-state">Governed</div>
-              </div>
-              <div class="mini-row">
-                <div class="mini-tag">Modules</div>
-                <strong>Writing, verification, management, controlled AI access</strong>
-                <div class="mini-state">Reusable</div>
-              </div>
+            <div class="signal-row">
+              <div class="signal-tag">Evidence</div>
+              <strong>Typed, tagged, linked to source and ownership metadata</strong>
+              <div class="signal-state">Structured</div>
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-tag">Review</div>
+              <strong>Gaps, conflicts, and uncertain knowledge routed into validation</strong>
+              <div class="signal-state">Traceable</div>
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-tag">Output</div>
+              <strong>Governed operational knowledge for writing, management, and controlled AI access</strong>
+              <div class="signal-state">Reusable</div>
             </div>
           </div>
         </div>
@@ -880,182 +923,179 @@
 
   <section class="section problem" id="problem">
     <div class="container">
-      <h2>The problem</h2>
-      <div class="section-intro">
-        Most organisations have documentation, but not governed operational knowledge. Critical know-how lives across systems, files, tickets, and people — and usually breaks exactly where context, judgment, and traceability matter most.
+      <div class="section-head">
+        <h2>The problem</h2>
+        <div class="section-intro">
+          Most organisations have documents, but not governed operational knowledge. Critical know-how is spread across files, systems, tickets, and individual experts — and usually breaks exactly where context, traceability, and judgment matter most.
+        </div>
       </div>
 
       <div class="grid">
         <div class="card">
           <h3>Expertise that disappears</h3>
           <p>When a long-tenured expert leaves, the organisation loses the workarounds, edge-case judgment, and operational memory built over years of practice. In most companies, that knowledge was never truly captured.</p>
-          <p class="sting">Irreplaceable · Permanent · Unrecoverable</p>
+          <div class="sting">Irreplaceable · Permanent · Unrecoverable</div>
         </div>
 
         <div class="card">
           <h3>Knowledge that never transfers</h3>
-          <p>New team members inherit documents, but not the reasoning behind them. The difference between written procedure and actual operational practice remains hidden until work breaks.</p>
-          <p class="sting">Lost productivity · Slow onboarding</p>
+          <p>New team members inherit documents, but not the reasoning behind them. The gap between written procedure and actual operational practice remains hidden until work breaks.</p>
+          <div class="sting">Slow onboarding · Repeated relearning</div>
         </div>
 
         <div class="card">
-          <h3>Answers that exist but stay fragmented</h3>
-          <p>The answer may already exist — in a PDF, a Jira ticket, a config export, or a wiki page. Without governed linking and validation, it remains scattered and hard to trust.</p>
-          <p class="sting">Operational risk · Repeated search cost</p>
+          <h3>Answers that stay fragmented</h3>
+          <p>The answer may already exist — in a PDF, a Jira ticket, a config export, or a wiki page. Without governed linking and validation, it remains scattered, ambiguous, and hard to trust.</p>
+          <div class="sting">Operational risk · Search friction</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section walkthrough" id="walkthrough">
+  <section class="section demo-section" id="demo">
     <div class="container">
-      <h2>Interactive product walkthrough</h2>
-      <div class="section-intro">
-        The product language on this page now follows the same visual logic as the demo: clearer steps, real interface structure, and less abstract illustration. The result is more consistent with how Requivo should feel as a deep-tech product.
+      <div class="section-head">
+        <h2>Concept demo</h2>
+        <div class="section-intro">
+          The interactive demo is hosted separately at <strong>demo.requivo.at</strong>. The main site explains the concept, while the demo illustrates how a future interface and workflow could look in practice.
+        </div>
       </div>
 
-      <div class="walkthrough-shell">
-        <div class="walkthrough-topbar">
-          <div class="walkthrough-brand">
-            <div class="brand-mini">Requivo</div>
-            <div class="brand-title">Interactive Product Walkthrough</div>
+      <div class="demo-frame">
+        <div class="demo-topbar">
+          <div class="demo-brand">
+            <div class="mini">Requivo</div>
+            <div class="title">Interactive concept demo</div>
           </div>
-          <div class="walkthrough-scenario">Scenario: Pichler Hydraulik GmbH · illustrative demo</div>
+          <div class="demo-scenario">Scenario: Pichler Hydraulik GmbH · illustrative only</div>
         </div>
 
-        <div class="walkthrough-note">
-          This walkthrough is for demonstration only; the interface and scenario are illustrative and do not represent the final product.
+        <div class="demo-note">
+          This demo is for demonstration purposes only; the interface and scenario are illustrative and do not represent the final product.
         </div>
 
-        <div class="walkthrough-body">
-          <div class="walkthrough-progress">
-            <div>2 / 8</div>
-            <div class="progress-dots">
-              <span class="dot done"></span>
-              <span class="dot active"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
+        <div class="demo-progress">
+          <div>2 / 8</div>
+          <div class="dots">
+            <span class="dot done"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
+        </div>
 
-          <div class="walkthrough-stage">
-            <div class="walkthrough-canvas">
-              <div class="walkthrough-pane">
-                <div class="walkthrough-screen">
-                  <div class="screen-content">
-                    <div class="screen-step">Step 1 · Ingestion</div>
-                    <div class="screen-title">Connect what you already have</div>
-                    <div class="screen-copy">
-                      Requivo ingests documents, tickets, configs, and wikis from the systems your team already uses — no migration needed.
+        <div class="demo-canvas">
+          <div class="demo-screen">
+            <div class="screen-inner">
+              <div class="screen-step">Step 1 · Ingestion</div>
+              <div class="screen-title">Connect what you already have</div>
+              <div class="screen-copy">
+                Requivo ingests documents, tickets, configs, and wikis from the systems your team already uses — no migration needed.
+              </div>
+
+              <div class="source-card">
+                <div class="source-card-top">
+                  <span>Source connectors</span>
+                  <span class="source-status">Ingested</span>
+                </div>
+
+                <div class="source-list">
+                  <div class="source-item">
+                    <div class="source-badge pdf">PDF</div>
+                    <div class="source-main">
+                      <strong>restart_procedure_v3.pdf</strong>
                     </div>
-
-                    <div class="source-card">
-                      <div class="source-card-top">
-                        <span>Source connectors</span>
-                        <span class="source-status">Ingested</span>
-                      </div>
-
-                      <div class="source-list">
-                        <div class="source-item">
-                          <div class="source-badge pdf">PDF</div>
-                          <div class="source-main">
-                            <strong>restart_procedure_v3.pdf</strong>
-                          </div>
-                          <div class="source-meta">
-                            <span class="source-pill">SOP</span>
-                            <span class="source-date">F. Moser · 2019</span>
-                          </div>
-                        </div>
-
-                        <div class="source-item">
-                          <div class="source-badge ts">TS</div>
-                          <div class="source-main">
-                            <strong>press_line_A_config.yml</strong>
-                          </div>
-                          <div class="source-meta">
-                            <span class="source-pill">Config</span>
-                            <span class="source-date">PLC export · 2024</span>
-                          </div>
-                        </div>
-
-                        <div class="source-item">
-                          <div class="source-badge ji">JI</div>
-                          <div class="source-main">
-                            <strong>ENG-4412 — Pressure valve rework</strong>
-                          </div>
-                          <div class="source-meta">
-                            <span class="source-pill">Ticket</span>
-                            <span class="source-date">K. Berger · Q3 2025</span>
-                          </div>
-                        </div>
-
-                        <div class="source-item">
-                          <div class="source-badge co">CO</div>
-                          <div class="source-main">
-                            <strong>Hydraulic Press Restart (wiki)</strong>
-                          </div>
-                          <div class="source-meta">
-                            <span class="source-pill">Wiki</span>
-                            <span class="source-date">Last edit 2021</span>
-                          </div>
-                        </div>
-
-                        <div class="source-item">
-                          <div class="source-badge csv">CSV</div>
-                          <div class="source-main">
-                            <strong>CMMS incident 2025-Q4-017</strong>
-                          </div>
-                          <div class="source-meta">
-                            <span class="source-pill">Incident</span>
-                            <span class="source-date">Auto-import</span>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="source-meta">
+                      <span class="source-pill">SOP</span>
+                      <span class="source-date">F. Moser · 2019</span>
                     </div>
+                  </div>
 
-                    <div class="evidence-banner">
-                      <strong>1,490 evidence objects</strong> ingested from 6 sources. Each is typed, tagged with owner and date, and linked to its origin — ready for knowledge construction.
+                  <div class="source-item">
+                    <div class="source-badge ts">TS</div>
+                    <div class="source-main">
+                      <strong>press_line_A_config.yml</strong>
                     </div>
+                    <div class="source-meta">
+                      <span class="source-pill">Config</span>
+                      <span class="source-date">PLC export · 2024</span>
+                    </div>
+                  </div>
 
-                    <div class="screen-footer">
-                      <a href="#" class="back-btn">← Back</a>
-                      <a href="#" class="continue-btn">Continue →</a>
+                  <div class="source-item">
+                    <div class="source-badge ji">JI</div>
+                    <div class="source-main">
+                      <strong>ENG-4412 — Pressure valve rework</strong>
+                    </div>
+                    <div class="source-meta">
+                      <span class="source-pill">Ticket</span>
+                      <span class="source-date">K. Berger · Q3 2025</span>
+                    </div>
+                  </div>
+
+                  <div class="source-item">
+                    <div class="source-badge co">CO</div>
+                    <div class="source-main">
+                      <strong>Hydraulic Press Restart (wiki)</strong>
+                    </div>
+                    <div class="source-meta">
+                      <span class="source-pill">Wiki</span>
+                      <span class="source-date">Last edit 2021</span>
+                    </div>
+                  </div>
+
+                  <div class="source-item">
+                    <div class="source-badge csv">CSV</div>
+                    <div class="source-main">
+                      <strong>CMMS incident 2025-Q4-017</strong>
+                    </div>
+                    <div class="source-meta">
+                      <span class="source-pill">Incident</span>
+                      <span class="source-date">Auto-import</span>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="evidence-banner">
+                <strong>1,490 evidence objects</strong> ingested from 6 sources. Each is typed, tagged with owner and date, and linked to its origin — ready for knowledge construction.
+              </div>
+
+              <div class="screen-footer">
+                <a href="#" class="back-btn">← Back</a>
+                <a href="https://demo.requivo.at/" class="continue-btn" target="_blank" rel="noopener noreferrer">Open demo →</a>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
 
-      <div class="deep-grid">
-        <div class="deep-card">
-          <div class="kicker">Design principle</div>
-          <h3>System confidence instead of abstract motion</h3>
+      <div class="demo-meta-grid">
+        <div class="meta-card">
+          <div class="mini">Site logic</div>
+          <h3>Main site for concept, separate site for demo</h3>
           <p>
-            The page now shows an interface-led product story rather than decorative graphs. That makes the product feel more credible, more operational, and more aligned with enterprise deep-tech expectations.
+            requivo.at should explain the category, the problem, and the intended system logic. demo.requivo.at should remain a separate, clearly labelled concept demo environment.
           </p>
         </div>
 
-        <div class="deep-card">
-          <div class="kicker">Visual direction</div>
-          <h3>Demo-consistent, but still deep-tech</h3>
+        <div class="meta-card">
+          <div class="mini">Naming</div>
+          <h3>Use “concept demo”, not “product walkthrough”</h3>
           <p>
-            The walkthrough uses a lighter internal product canvas inside a darker shell, so the interface stays consistent with Patrick’s demo while the page around it still feels premium and technical.
+            Because the product does not yet exist in final form, the language should stay careful and factual: concept demo, illustrative interface, future workflow logic.
           </p>
         </div>
 
-        <div class="deep-card">
-          <div class="kicker">Brand logic</div>
-          <h3>Closer to Palantir / Mistral than generic SaaS</h3>
+        <div class="meta-card">
+          <div class="mini">Design direction</div>
+          <h3>White, sharp, precise, enterprise</h3>
           <p>
-            The structure is quieter, sharper, and more architectural: strong typography, large spacing, restrained color accents, and a product-first presentation rather than startup-style illustration.
+            The page now uses a lighter Palantir-like structure: strong typography, white background, clean borders, restrained accents, and interface-led credibility rather than abstract deep-tech decoration.
           </p>
         </div>
       </div>
@@ -1064,9 +1104,11 @@
 
   <section class="section usecases" id="usecases">
     <div class="container">
-      <h2>Use cases</h2>
-      <div class="section-intro">
-        Requivo is relevant wherever operational expertise is critical, distributed, and difficult to preserve — especially where fragmented sources and weak documentation create risk.
+      <div class="section-head">
+        <h2>Use cases</h2>
+        <div class="section-intro">
+          Requivo is relevant wherever operational expertise is critical, distributed, and difficult to preserve — especially where fragmented sources and weak documentation create risk.
+        </div>
       </div>
 
       <div class="grid">
@@ -1081,7 +1123,7 @@
         </div>
 
         <div class="card">
-          <h3>Regulated Environments</h3>
+          <h3>Regulated environments</h3>
           <p>Traceability, source linkage, and structured validation make Requivo suitable for quality, compliance, and safety-relevant workflows.</p>
         </div>
       </div>
@@ -1090,9 +1132,11 @@
 
   <section class="section" id="contact">
     <div class="container">
-      <h2>Contact</h2>
-      <div class="section-intro">
-        We are currently building Requivo with a focused group of early design partners. If governed operational knowledge is relevant to your organisation, we would be glad to hear from you.
+      <div class="section-head">
+        <h2>Contact</h2>
+        <div class="section-intro">
+          We are currently developing the concept further and preparing for future validation. If governed operational knowledge is relevant to your organisation, we would be glad to hear from you.
+        </div>
       </div>
 
       <div class="contact-grid">
