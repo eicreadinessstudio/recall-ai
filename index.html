@@ -50,7 +50,9 @@ img { display: block; max-width: 100%; }
 
 /* NAV */
 nav {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: rgba(255,255,255,.92);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line-soft);
@@ -58,36 +60,61 @@ nav {
 }
 nav.raised { box-shadow: 0 1px 18px rgba(55,48,163,.07); }
 .nav-inner {
-  display: flex; align-items: center;
-  justify-content: space-between; height: 64px; gap: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 32px;
 }
 .logo {
-  display: flex; align-items: center; gap: 10px;
-  font-family: var(--font-serif); font-size: 21px; color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  color: var(--text);
 }
 .logo-mark {
-  width: 26px; height: 26px; border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
   background: var(--indigo);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .logo-mark svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 2; }
-.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 .nav-links a {
-  font-size: 14px; font-weight: 400; color: var(--text-soft);
-  letter-spacing: .01em; transition: color .18s;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-soft);
+  letter-spacing: .01em;
+  transition: color .18s;
 }
 .nav-links a:hover { color: var(--text); }
 .nav-cta {
-  background: var(--indigo) !important; color: #fff !important;
-  padding: 9px 20px; border-radius: 6px;
-  font-size: 13px !important; font-weight: 500 !important;
+  background: var(--indigo) !important;
+  color: #fff !important;
+  padding: 9px 20px;
+  border-radius: 6px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
   transition: background .18s, transform .18s !important;
 }
-.nav-cta:hover { background: #312e81 !important; transform: translateY(-1px) !important; }
+.nav-cta:hover {
+  background: #312e81 !important;
+  transform: translateY(-1px) !important;
+}
 
 /* HERO */
 .hero {
-  padding: 100px 0 88px;
+  padding: 96px 0 92px;
   position: relative;
   overflow: hidden;
 }
@@ -107,8 +134,8 @@ nav.raised { box-shadow: 0 1px 18px rgba(55,48,163,.07); }
   mask-image: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(0,0,0,.45) 15%,
-    rgba(0,0,0,.45) 85%,
+    rgba(0,0,0,.42) 14%,
+    rgba(0,0,0,.42) 86%,
     transparent 100%
   );
 }
@@ -116,86 +143,115 @@ nav.raised { box-shadow: 0 1px 18px rgba(55,48,163,.07); }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0,1fr) 360px;
-  gap: 64px;
-  align-items: start;
+  grid-template-columns: minmax(0, .95fr) minmax(420px, .95fr);
+  gap: 72px;
+  align-items: center;
 }
 .hero-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--indigo-mid); background: var(--indigo-soft);
-  padding: 5px 12px; border-radius: 4px; margin-bottom: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--indigo-mid);
+  background: var(--indigo-soft);
+  padding: 5px 12px;
+  border-radius: 4px;
+  margin-bottom: 28px;
 }
 .hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 400; line-height: 1.02; letter-spacing: -.02em;
-  color: var(--text); margin-bottom: 22px;
+  font-size: clamp(42px, 6.4vw, 82px);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 760px;
 }
-.hero h1 em { font-style: italic; color: var(--indigo-mid); }
+.hero h1 .accent {
+  color: var(--indigo-mid);
+}
 .hero-sub {
-  font-size: 18px; line-height: 1.78; color: var(--text-soft);
-  max-width: 560px; font-weight: 300; margin-bottom: 36px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-soft);
+  max-width: 560px;
+  font-weight: 300;
+  margin-bottom: 36px;
 }
 .hero-actions {
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 26px; border-radius: 6px;
-  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-  letter-spacing: .01em; cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  cursor: pointer;
   border: 1px solid transparent;
   transition: transform .2s var(--ease), box-shadow .2s, background .18s, border-color .18s;
 }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary {
-  background: var(--indigo); color: #fff; border-color: var(--indigo);
+  background: var(--indigo);
+  color: #fff;
+  border-color: var(--indigo);
   box-shadow: 0 2px 16px rgba(55,48,163,.18);
 }
-.btn-primary:hover { background: #312e81; box-shadow: 0 4px 24px rgba(55,48,163,.28); }
+.btn-primary:hover {
+  background: #312e81;
+  box-shadow: 0 4px 24px rgba(55,48,163,.28);
+}
 .btn-outline {
-  background: transparent; color: var(--text-mid); border-color: var(--line);
+  background: transparent;
+  color: var(--text-mid);
+  border-color: var(--line);
 }
-.btn-outline:hover { border-color: var(--text-dim); background: var(--bg-off); }
-
-/* HERO IMAGE */
-.hero-aside { padding-top: 8px; }
-.hero-shot {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+.btn-outline:hover {
+  border-color: var(--text-dim);
   background: var(--bg-off);
-  box-shadow: 0 8px 30px rgba(15,28,58,.06);
 }
-.hero-shot-media {
-  background: #eef2f7;
-  min-height: 320px;
+
+/* HERO IMAGE — editorial */
+.hero-aside {
+  display: flex;
+  justify-content: flex-end;
 }
-.hero-shot-media img {
+.hero-shot {
   width: 100%;
-  height: 100%;
+  max-width: 540px;
+}
+.hero-shot-frame {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #eef2f7;
+  box-shadow: 0 10px 40px rgba(15,28,58,.06);
+}
+.hero-shot-frame img {
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
   object-fit: cover;
 }
-.hero-shot-meta {
-  padding: 14px 16px;
-  border-top: 1px solid var(--line-soft);
-  background: #fff;
-}
-.hero-shot-kicker {
+.hero-shot-caption {
+  margin-top: 12px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 6px;
-}
-.hero-shot-copy {
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--text-soft);
-  font-weight: 300;
 }
 
 /* SECTIONS */
@@ -529,7 +585,7 @@ footer {
   align-items: center;
 }
 
-/* SCROLL REVEAL */
+/* REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -544,8 +600,9 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 1040px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-aside { display: block; max-width: 520px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 44px; }
+  .hero-aside { justify-content: flex-start; }
+  .hero-shot { max-width: 620px; }
   .solution-layout { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -559,6 +616,7 @@ footer {
   .strata-body { padding: 0 20px 16px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; }
+  .hero-shot-frame img { aspect-ratio: 1 / .92; }
 }
 </style>
 </head>
@@ -594,7 +652,7 @@ footer {
     <div class="hero-inner">
       <div>
         <div class="hero-tag">Operational knowledge system</div>
-        <h1>Critical knowledge exists. <em>Your organisation just can't use it.</em></h1>
+        <h1>Critical knowledge exists. <span class="accent">Your organisation just can't use it.</span></h1>
         <p class="hero-sub">Requivo turns fragmented enterprise evidence into governed operational knowledge.</p>
         <div class="hero-actions">
           <a href="#solution" class="btn btn-primary">Read the concept</a>
@@ -604,13 +662,10 @@ footer {
 
       <div class="hero-aside">
         <div class="hero-shot">
-          <div class="hero-shot-media">
+          <div class="hero-shot-frame">
             <img src="requivo-fragment.png" alt="Selected interface fragment from Requivo" />
           </div>
-          <div class="hero-shot-meta">
-            <div class="hero-shot-kicker">Selected interface fragment</div>
-            <div class="hero-shot-copy">Early internal concept view from the Requivo prototype direction.</div>
-          </div>
+          <div class="hero-shot-caption">Selected interface fragment</div>
         </div>
       </div>
     </div>
@@ -852,6 +907,5 @@ const io = new IntersectionObserver(entries => {
 
 els.forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>
