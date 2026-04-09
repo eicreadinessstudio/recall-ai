@@ -9,6 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+<script>
+  document.documentElement.classList.add('js');
+</script>
+
 <style>
 :root {
   --bg:          #ffffff;
@@ -71,7 +75,7 @@ nav.raised { box-shadow: 0 1px 18px rgba(55,48,163,.07); }
   gap: 32px;
 }
 
-/* LOGO — Strata mark */
+/* LOGO */
 .logo {
   display: flex;
   align-items: center;
@@ -267,8 +271,7 @@ nav.raised { box-shadow: 0 1px 18px rgba(55,48,163,.07); }
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
   box-shadow: 0 10px 40px rgba(15,28,58,.06);
   padding: 18px;
 }
@@ -698,14 +701,19 @@ footer {
   align-items: center;
 }
 
-/* REVEAL */
+/* REVEAL - safe version */
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
+  opacity: 1;
+  transform: none;
   transition: opacity .65s var(--ease), transform .65s var(--ease);
 }
 
-.reveal.in {
+.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.js .reveal.in {
   opacity: 1;
   transform: none;
 }
@@ -749,37 +757,37 @@ footer {
   }
 
   .hero-shot-frame.hero-no-img {
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(145deg, #f0f4fb 0%, #e8eef7 100%);
-  position: relative;
-  overflow: hidden;
-}
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #f0f4fb 0%, #e8eef7 100%);
+    position: relative;
+    overflow: hidden;
+  }
 
-.hero-shot-frame.hero-no-img::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(55,48,163,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(55,48,163,.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
+  .hero-shot-frame.hero-no-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(55,48,163,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(55,48,163,.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 
-.hero-shot-frame.hero-no-img::after {
-  content: 'Interface fragment coming soon';
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .1em;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  position: relative;
-  z-index: 1;
-}
+  .hero-shot-frame.hero-no-img::after {
+    content: 'Interface fragment coming soon';
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
 
-.hero-shot-frame img {
+  .hero-shot-frame img {
     max-height: none;
   }
 }
@@ -789,10 +797,10 @@ footer {
 
 <nav id="nav">
   <div class="wrap nav-inner">
-            <a href="#top" class="logo" aria-label="Requivo home">
+    <a href="#top" class="logo" aria-label="Requivo home">
       <svg viewBox="0 0 44 36" width="36" height="29" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M 16 3  Q 4 3  4 13  L 4 23  Q 4 33  16 33" stroke="#3730a3" stroke-width="3.8" stroke-linecap="round" fill="none"/>
-        <path d="M 28 3  Q 40 3  40 13  L 40 23  Q 40 33  28 33" stroke="#3730a3" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+        <path d="M 16 3 Q 4 3 4 13 L 4 23 Q 4 33 16 33" stroke="#3730a3" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+        <path d="M 28 3 Q 40 3 40 13 L 40 23 Q 40 33 28 33" stroke="#3730a3" stroke-width="3.8" stroke-linecap="round" fill="none"/>
         <rect x="14" y="9" width="16" height="16" rx="2.5" fill="#0ea5e9" transform="rotate(45 22 17)"/>
         <circle cx="22" cy="17" r="2.8" fill="#ffffff" opacity=".5"/>
       </svg>
@@ -825,8 +833,10 @@ footer {
       <div class="hero-aside">
         <div class="hero-shot">
           <div class="hero-shot-frame">
-            <img src="requivo-fragment.png" alt="Selected interface fragment from Requivo"
-                 onerror="this.style.display='none';this.parentElement.classList.add('hero-no-img')" />
+            <img
+              src="requivo-fragment.png"
+              alt="Selected interface fragment from Requivo"
+              onerror="this.style.display='none';this.parentElement.classList.add('hero-no-img')" />
           </div>
           <div class="hero-shot-caption">Selected interface fragment</div>
         </div>
@@ -893,7 +903,7 @@ footer {
       <div class="sol-panels reveal d1">
         <div class="sol-panel">
           <div class="sol-tag">Core flow</div>
-          <h3>Fragmented evidence \u2192 structure \u2192 governed layer</h3>
+          <h3>Fragmented evidence → structure → governed layer</h3>
           <p>From messy source material to reusable governed operational knowledge.</p>
         </div>
 
@@ -1007,10 +1017,10 @@ footer {
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-                        <a href="#top" class="footer-logo" aria-label="Requivo home">
+        <a href="#top" class="footer-logo" aria-label="Requivo home">
           <svg viewBox="0 0 44 36" width="36" height="29" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M 16 3  Q 4 3  4 13  L 4 23  Q 4 33  16 33" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" fill="none"/>
-            <path d="M 28 3  Q 40 3  40 13  L 40 23  Q 40 33  28 33" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+            <path d="M 16 3 Q 4 3 4 13 L 4 23 Q 4 33 16 33" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+            <path d="M 28 3 Q 40 3 40 13 L 40 23 Q 40 33 28 33" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" fill="none"/>
             <rect x="14" y="9" width="16" height="16" rx="2.5" fill="#38bdf8" transform="rotate(45 22 17)"/>
             <circle cx="22" cy="17" r="2.8" fill="#0f1c3a" opacity=".35"/>
           </svg>
@@ -1044,4 +1054,48 @@ footer {
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 Requivo
+      <span>© 2026 Requivo</span>
+      <span>All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.getElementById('nav');
+  const reveals = document.querySelectorAll('.reveal');
+
+  function updateNav() {
+    if (window.scrollY > 8) {
+      nav.classList.add('raised');
+    } else {
+      nav.classList.remove('raised');
+    }
+  }
+
+  updateNav();
+  window.addEventListener('scroll', updateNav);
+
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('in'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
