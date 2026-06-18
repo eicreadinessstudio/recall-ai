@@ -9,7 +9,7 @@
 <meta name="color-scheme" content="dark" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Requivo — Governed operational knowledge for complex organisations" />
-<meta property="og:description" content="Critical knowledge exists. Requivo makes it usable. The governed knowledge layer for organisations where correctness, ownership, and reuse matter." />
+<meta property="og:description" content="The operational knowledge layer your people and AI can trust. Requivo turns scattered documents, systems, and expert know-how into one governed layer — every answer traced to its source, owner, and validation state." />
 <meta property="og:url" content="https://requivo.at" />
 <link rel="icon" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -217,13 +217,17 @@ section[id], div[id].stack { scroll-margin-top: 64px; }
 }
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(46px, 5.8vw, 76px);
+  font-size: clamp(46px, 5.6vw, 74px);
   font-weight: 400;
-  line-height: 1.0;
-  letter-spacing: -.015em;
+  line-height: 1.02;
+  letter-spacing: -.022em;
   color: var(--text);
   margin-bottom: 32px;
-  text-wrap: balance;
+}
+.hero h1 .h1-line {
+  display: block;
+  margin-top: .26em;
+  color: var(--text);
 }
 .hero h1 .accent { color: var(--brand); }
 
@@ -786,6 +790,115 @@ section[id], div[id].stack { scroll-margin-top: 64px; }
 .rqw-tag-mono { font-family: var(--rqw-mono); font-size: 10px; letter-spacing: .04em; color: var(--rqw-text-soft); background: var(--rqw-card-2); border: 1px solid var(--rqw-line); border-radius: 100px; padding: 4px 10px; }
 .rqw-tag-mono b { color: var(--rqw-indigo); font-weight: 500; }
 
+/* ── Featured card emphasis (break monotony — card 03) ── */
+.rqw-row--featured .rqw-fragment { max-width: 560px; }
+.rqw-row--featured .rqw-card:last-child {
+  box-shadow:
+    0 0 0 0.5px rgba(165,180,252,.20),
+    0 1px 3px   rgba(8,14,38,.14),
+    0 4px 10px  rgba(8,14,38,.18),
+    0 18px 44px rgba(8,14,38,.40),
+    0 44px 88px rgba(8,14,38,.26),
+    0 22px 60px rgba(79,70,229,.26);
+}
+.rqw-row--featured .rqw-mark-label::after {
+  content: 'Core output';
+  margin-left: 12px;
+  font-family: var(--rqw-mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: var(--rqw-on-dark-dim);
+  border: 0.5px solid rgba(165,180,252,.30);
+  border-radius: 3px;
+  padding: 2px 7px;
+}
+
+/* ── Trust marks (large, deepip-style: symbol first, caption below) ── */
+.rqw-trust {
+  margin: 104px auto 0;
+  padding-top: 56px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.10) 20%, rgba(255,255,255,.10) 80%, transparent 100%) 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(36px, 7vw, 96px);
+}
+.rqw-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 150px;
+  text-align: center;
+}
+.rqw-trust-item svg {
+  flex: none;
+  color: var(--rqw-indigo-on-dark);
+  filter: drop-shadow(0 0 9px rgba(165,180,252,.28));
+}
+.rqw-trust-label {
+  font-family: var(--rqw-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--rqw-on-dark);
+  line-height: 1.3;
+}
+.rqw-trust-note {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--rqw-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--rqw-indigo-on-dark);
+  opacity: .72;
+}
+
+/* ── Section CTA ── */
+.rqw-cta {
+  margin: 56px auto 0;
+  text-align: center;
+}
+.rqw-cta p {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: #fff;
+  max-width: 540px;
+  margin: 0 auto 24px;
+  text-wrap: balance;
+}
+.rqw-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--rqw-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  color: #fff;
+  background: var(--rqw-indigo-mid);
+  border: 1px solid rgba(165,180,252,.28);
+  border-radius: 7px;
+  padding: 12px 26px;
+  box-shadow: 0 2px 8px rgba(55,48,163,.4), 0 10px 28px rgba(8,14,38,.34), inset 0 1px 0 rgba(255,255,255,.16);
+  transition: transform .2s var(--rqw-ease), box-shadow .2s var(--rqw-ease);
+}
+.rqw-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(55,48,163,.5), 0 16px 36px rgba(8,14,38,.4), inset 0 1px 0 rgba(255,255,255,.16);
+}
+@media (max-width: 768px) {
+  .rqw-trust { margin-top: 72px; gap: 32px 28px; }
+  .rqw-trust-item { width: 130px; }
+}
+
 /* WYG scroll-in */
 @media (prefers-reduced-motion: no-preference) {
   .rqw-suite.rqw-anim .rqw-copy,
@@ -1295,15 +1408,15 @@ footer {
   <div class="wrap">
     <div class="hero-inner">
       <div class="hero-copy">
-        <span class="hero-tag hero-rise hero-rise-1">Governed operational knowledge layer</span>
         <h1 class="hero-rise hero-rise-2">
-          Critical knowledge exists<br>
-          <span class="accent">Requivo</span> makes it usable
+          The operational<br>
+          <span class="accent">knowledge layer</span>
+          <span class="h1-line">your people and AI can trust</span>
         </h1>
-        <p class="hero-sub hero-rise hero-rise-3">Requivo turns scattered documents, internal systems, and expert know-how into a governed operational knowledge layer your teams and AI tools can safely query, reuse, and trust.</p>
+        <p class="hero-sub hero-rise hero-rise-3">Requivo turns scattered documents, systems, and expert know-how into one governed layer — every answer traced to its source, owner, and validation state.</p>
         <div class="hero-actions hero-rise hero-rise-4">
-          <a href="#what-you-get" class="btn btn-primary">See what users get</a>
-          <a href="#solution" class="btn btn-ghost">Explore the system</a>
+          <a href="#what-you-get" class="btn btn-primary">See what you get</a>
+          <a href="#solution" class="btn btn-ghost">How it works</a>
         </div>
       </div>
       <div class="hero-aside hero-rise hero-rise-5">
@@ -1428,7 +1541,7 @@ footer {
     </div>
 
     <!-- 03 · KNOWLEDGE WRITER -->
-    <div class="rqw-row">
+    <div class="rqw-row rqw-row--featured">
       <div class="rqw-copy">
         <div class="rqw-mark">
           <span class="rqw-mark-ord">03</span>
@@ -1568,6 +1681,35 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- TRUST MARKS -->
+    <div class="rqw-trust" aria-label="Compliance and governance posture">
+      <div class="rqw-trust-item">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M40.00 6.30L40.91 8.75L43.52 8.86L41.47 10.48L42.17 12.99L40.00 11.55L37.83 12.99L38.53 10.48L36.48 8.86L39.09 8.75Z" fill="currentColor"/><path d="M55.00 10.32L55.91 12.77L58.52 12.88L56.47 14.50L57.17 17.01L55.00 15.57L52.83 17.01L53.53 14.50L51.48 12.88L54.09 12.77Z" fill="currentColor"/><path d="M65.98 21.30L66.89 23.75L69.50 23.86L67.45 25.48L68.16 27.99L65.98 26.55L63.81 27.99L64.51 25.48L62.46 23.86L65.07 23.75Z" fill="currentColor"/><path d="M70.00 36.30L70.91 38.75L73.52 38.86L71.47 40.48L72.17 42.99L70.00 41.55L67.83 42.99L68.53 40.48L66.48 38.86L69.09 38.75Z" fill="currentColor"/><path d="M65.98 51.30L66.89 53.75L69.50 53.86L67.45 55.48L68.16 57.99L65.98 56.55L63.81 57.99L64.51 55.48L62.46 53.86L65.07 53.75Z" fill="currentColor"/><path d="M55.00 62.28L55.91 64.73L58.52 64.84L56.47 66.46L57.17 68.97L55.00 67.53L52.83 68.97L53.53 66.46L51.48 64.84L54.09 64.73Z" fill="currentColor"/><path d="M40.00 66.30L40.91 68.75L43.52 68.86L41.47 70.48L42.17 72.99L40.00 71.55L37.83 72.99L38.53 70.48L36.48 68.86L39.09 68.75Z" fill="currentColor"/><path d="M25.00 62.28L25.91 64.73L28.52 64.84L26.47 66.46L27.17 68.97L25.00 67.53L22.83 68.97L23.53 66.46L21.48 64.84L24.09 64.73Z" fill="currentColor"/><path d="M14.02 51.30L14.93 53.75L17.54 53.86L15.49 55.48L16.19 57.99L14.02 56.55L11.84 57.99L12.55 55.48L10.50 53.86L13.11 53.75Z" fill="currentColor"/><path d="M10.00 36.30L10.91 38.75L13.52 38.86L11.47 40.48L12.17 42.99L10.00 41.55L7.83 42.99L8.53 40.48L6.48 38.86L9.09 38.75Z" fill="currentColor"/><path d="M14.02 21.30L14.93 23.75L17.54 23.86L15.49 25.48L16.19 27.99L14.02 26.55L11.84 27.99L12.55 25.48L10.50 23.86L13.11 23.75Z" fill="currentColor"/><path d="M25.00 10.32L25.91 12.77L28.52 12.88L26.47 14.50L27.17 17.01L25.00 15.57L22.83 17.01L23.53 14.50L21.48 12.88L24.09 12.77Z" fill="currentColor"/><rect x="31" y="38" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M34 38v-3a6 6 0 0 1 12 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="45" r="1.6" fill="currentColor"/></svg>
+        <div class="rqw-trust-label">GDPR</div>
+      </div>
+      <div class="rqw-trust-item">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M40.00 6.30L40.91 8.75L43.52 8.86L41.47 10.48L42.17 12.99L40.00 11.55L37.83 12.99L38.53 10.48L36.48 8.86L39.09 8.75Z" fill="currentColor"/><path d="M55.00 10.32L55.91 12.77L58.52 12.88L56.47 14.50L57.17 17.01L55.00 15.57L52.83 17.01L53.53 14.50L51.48 12.88L54.09 12.77Z" fill="currentColor"/><path d="M65.98 21.30L66.89 23.75L69.50 23.86L67.45 25.48L68.16 27.99L65.98 26.55L63.81 27.99L64.51 25.48L62.46 23.86L65.07 23.75Z" fill="currentColor"/><path d="M70.00 36.30L70.91 38.75L73.52 38.86L71.47 40.48L72.17 42.99L70.00 41.55L67.83 42.99L68.53 40.48L66.48 38.86L69.09 38.75Z" fill="currentColor"/><path d="M65.98 51.30L66.89 53.75L69.50 53.86L67.45 55.48L68.16 57.99L65.98 56.55L63.81 57.99L64.51 55.48L62.46 53.86L65.07 53.75Z" fill="currentColor"/><path d="M55.00 62.28L55.91 64.73L58.52 64.84L56.47 66.46L57.17 68.97L55.00 67.53L52.83 68.97L53.53 66.46L51.48 64.84L54.09 64.73Z" fill="currentColor"/><path d="M40.00 66.30L40.91 68.75L43.52 68.86L41.47 70.48L42.17 72.99L40.00 71.55L37.83 72.99L38.53 70.48L36.48 68.86L39.09 68.75Z" fill="currentColor"/><path d="M25.00 62.28L25.91 64.73L28.52 64.84L26.47 66.46L27.17 68.97L25.00 67.53L22.83 68.97L23.53 66.46L21.48 64.84L24.09 64.73Z" fill="currentColor"/><path d="M14.02 51.30L14.93 53.75L17.54 53.86L15.49 55.48L16.19 57.99L14.02 56.55L11.84 57.99L12.55 55.48L10.50 53.86L13.11 53.75Z" fill="currentColor"/><path d="M10.00 36.30L10.91 38.75L13.52 38.86L11.47 40.48L12.17 42.99L10.00 41.55L7.83 42.99L8.53 40.48L6.48 38.86L9.09 38.75Z" fill="currentColor"/><path d="M14.02 21.30L14.93 23.75L17.54 23.86L15.49 25.48L16.19 27.99L14.02 26.55L11.84 27.99L12.55 25.48L10.50 23.86L13.11 23.75Z" fill="currentColor"/><path d="M25.00 10.32L25.91 12.77L28.52 12.88L26.47 14.50L27.17 17.01L25.00 15.57L22.83 17.01L23.53 14.50L21.48 12.88L24.09 12.77Z" fill="currentColor"/><circle cx="40" cy="40" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M40 28v7M40 45v7M28 40h7M45 40h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="40" cy="28" r="1.8" fill="currentColor"/><circle cx="40" cy="52" r="1.8" fill="currentColor"/><circle cx="28" cy="40" r="1.8" fill="currentColor"/><circle cx="52" cy="40" r="1.8" fill="currentColor"/></svg>
+        <div class="rqw-trust-label">EU AI Act</div>
+      </div>
+      <div class="rqw-trust-item">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="26" stroke="currentColor" stroke-width="2"/><ellipse cx="40" cy="40" rx="11" ry="26" stroke="currentColor" stroke-width="1.6"/><path d="M14 40h52" stroke="currentColor" stroke-width="1.6"/><path d="M17.7 27h44.6M17.7 53h44.6" stroke="currentColor" stroke-width="1.6"/><rect x="24" y="31.5" width="32" height="17" rx="2.5" fill="#07090f"/><text x="40" y="44.6" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="currentColor" letter-spacing="0.3">ISO</text></svg>
+        <div class="rqw-trust-label">ISO/IEC 42001<span class="rqw-trust-note">high relevance</span></div>
+      </div>
+      <div class="rqw-trust-item">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="28" cy="52" r="12" stroke="currentColor" stroke-width="2"/><circle cx="28" cy="52" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M36.5 43.5 59 21M52.5 27.5l5.5 5.5M59.5 20.5l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="rqw-trust-label">BYOK</div>
+      </div>
+    </div>
+
+    <!-- SECTION CTA -->
+    <div class="rqw-cta">
+      <p>Bring one workflow. See it governed.</p>
+      <a href="#contact" class="rqw-cta-btn">
+        Book a demo
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4.5 2.5l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
 
   </div>
